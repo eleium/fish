@@ -1,0 +1,7 @@
+   # Python 项目常见忽略规则
+   __pycache__/
+   *.pyc
+   .env
+   .DS_Store
+   /venv/
+   /.idea/
