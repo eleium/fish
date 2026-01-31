@@ -11,7 +11,7 @@ while times_input > 0:  # 当这个变量大于0的时候，开始执行下面�
     temp = input('猜一下小甲鱼现在心里想的是哪个数字：')
     guess = int(temp)
 
-    answer = random.randrange(1, 5)
+    answer = random.randrange(1, 5)#这一行可以提到第十行，当作全局全域赋值。效果一样，逻辑更对。
     print(answer)
 
     if guess == answer:
