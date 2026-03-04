@@ -50,6 +50,8 @@ print(a.count(3))#在a 列表里面没有3
 
 #index()方法：查找某个元素的下标索引值：
 c=[3,4,5,2,7,1]
+
+#反转列表
 c.reverse()
 print(c)#---->[1,7,2,5,4,3]已经反转
 
@@ -63,4 +65,11 @@ print(c)
 print(c.index(2,1,5))#查找值为2的元素，并从下标索引值1-5里面查找
 
 #copy()方法：
+num=[3,5,6,7,2,89]
+num_copy1=num.copy()
+num_copy2=num[:]
+print(num_copy1)
+print(num_copy2)
 
+num_copy3=num[1:4]#从下标1-4，不含4的元素拷贝
+print(num_copy3)
