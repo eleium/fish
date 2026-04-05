@@ -28,13 +28,13 @@ print(next(y))  # ---> 5
 #    print(next(y))
 # StopIteration
 
-#如果不想抛出异常，可以用next()函数的第二个参数：
+# 如果不想抛出异常，可以用next()函数的第二个参数：
 
-z=iter(x)#因为迭代器 y=iter(x)是一次性的，所以要重新定义一个迭代器。
-print(next(z))#--->1
-print(next(z))#--->2
-print(next(z))#--->3
-print(next(z))#--->4
-print(next(z))#--->5
-#所有元素已经都提取完毕，此时如果不想抛出异常，可以给next()函数加上第二个参数：
-print(next(z,'没有元素啦'))#--->没有元素啦
+z = iter(x)  # 因为迭代器 y=iter(x)是一次性的，所以要重新定义一个迭代器。
+print(next(z))  # --->1
+print(next(z))  # --->2
+print(next(z))  # --->3
+print(next(z))  # --->4
+print(next(z))  # --->5
+# 所有元素已经都提取完毕，此时如果不想抛出异常，可以给next()函数加上第二个参数：
+print(next(z, '没有元素啦'))  # --->没有元素啦
