@@ -26,31 +26,39 @@ zip()函数：返回一个聚合多个可迭代对象的迭代器，可以用lis
 """
 h = ["小王", "小李", "小张", "老孙"]
 g = [10, 20, 30, 40]
-k = ['a', 'b', 'c', 'd']
-zip(h, g, k)  # zip()函数可以接受任意数量的参数（包括 0 个），但通常我们使用它时传入 2 个或更多的可迭代对象来进行聚合。
-print(list(zip(h, g, k)))#-->[('小王', 10, 'a'), ('小李', 20, 'b'), ('小张', 30, 'c'), ('老孙', 40, 'd')]
+k = ["a", "b", "c", "d"]
+zip(
+    h, g, k
+)  # zip()函数可以接受任意数量的参数（包括 0 个），但通常我们使用它时传入 2 个或更多的可迭代对象来进行聚合。
+print(
+    list(zip(h, g, k))
+)  # -->[('小王', 10, 'a'), ('小李', 20, 'b'), ('小张', 30, 'c'), ('老孙', 40, 'd')]
 
-print(list(zip()))#---->[]空列表
+print(list(zip()))  # ---->[]空列表
 
-l=[1,2,3]
-print(list(zip(l)))#---->[(1,), (2,), (3,)]把每一个元素当成一个元组。
+l = [1, 2, 3]
+print(list(zip(l)))  # ---->[(1,), (2,), (3,)]把每一个元素当成一个元组。
 
-x=[1,2,3]
-y=[4,5,6]
-zip(x,y)
+x = [1, 2, 3]
+y = [4, 5, 6]
+zip(x, y)
 print(list(zip(x, y)))
 
-z=[7,8,9]
-zipped=zip(x,y)
-print(list(zip(z, zipped)))#-->[(7,(1,4)),(8,(2,5)),(9,(3,6))]
-#变量z 在zipped 前面，注意顺序： zip(z,zipped)
+z = [7, 8, 9]
+zipped = zip(x, y)
+print(list(zip(z, zipped)))  # -->[(7,(1,4)),(8,(2,5)),(9,(3,6))]
+# 变量z 在zipped 前面，注意顺序： zip(z,zipped)
 
-print(list(zip(x,y,z)))#--->[(1,4,7),(2,5,8),(3,6,9)]
+print(list(zip(x, y, z)))  # --->[(1,4,7),(2,5,8),(3,6,9)]
 
-x='heloo'
-print(list(zip(x,y,z)))#--->[('h',4,7),('e',5,8),('l',6,9)] 以元素少的可迭代对象为准。
+x = "heloo"
+print(
+    list(zip(x, y, z))
+)  # --->[('h',4,7),('e',5,8),('l',6,9)] 以元素少的可迭代对象为准。
 
 import itertools
-print(list(itertools.zip_longest(x,y,z)))#--->[('h',4,7),('e',5,8),('l',6,9),('o',None,None),('o',None,None]
-# itertools.zip_longest() 函数的参数与 zip() 函数一样，但会以 None 填充空缺的位置。
 
+print(
+    list(itertools.zip_longest(x, y, z))
+)  # --->[('h',4,7),('e',5,8),('l',6,9),('o',None,None),('o',None,None]
+# itertools.zip_longest() 函数的参数与 zip() 函数一样，但会以 None 填充空缺的位置。
