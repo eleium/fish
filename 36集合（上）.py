@@ -130,7 +130,7 @@ print(n.issuperset(h))  # --->True n 是 h 的超集。注意不要搞反了。
 
 # 用union()方法把两个集合合并为一个新集合：并集
 j = h.union(n)  # 用一个集合取union另外一个集合。
-print(j)  # --->{'d', 'l', 'o', 's', ',', 'e', 'm', 'g', 't', 'f', 'n', 'w', 'y', 'h', ' ', 'u', 'i', 'r'}
+print(j)  # --->{'d', 'l', 'o', 's', ',', 'e', 'm', 'g', 't', 'f', 'n', 'w', 'y', 'h', ' ', 'u', 'I', 'r'}
 
 # 用intersection()方法找到两个集合的交集：也是新的到一个集合.
 
@@ -141,7 +141,7 @@ print(m)  # --->{' ', 'o', 'l', 'd', 'r', 'w', 'e', 'h'}
 l = h.difference(n)
 print(l)  # --->set{}空集合
 o = n.difference(h)
-print(o)  # --->{'s', 'y', ',', 'm', 'g', 't', 'f', 'u', 'i', 'n'}
+print(o)  # --->{'s', 'y', ',', 'm', 'g', 't', 'f', 'u', 'I', 'n'}
 
 # 方法union(),intersection()和difference()都可以多参数：
 # p = h.union({1, 2, 3}, 'python')  # 报错：union() 的参数必须是可迭代对象，但集合只能合并相同类型的元素。
@@ -180,17 +180,17 @@ print(h >= n)  # --->False
 print(h > n)  # --->False
 
 # 并集的验证用那根竖： | 也叫管道符
-print(h | n)  # --->{'t', 'm', 'e', 'u', 'n', 'i', 'l', 'g', 'f', ' ', 'w', 's', 'r', 'h', 'd', ',', 'y', 'o'}
+print(h | n)  # --->{'t', 'm', 'e', 'u', 'n', 'I', 'l', 'g', 'f', ' ', 'w', 's', 'r', 'h', 'd', ',', 'y', 'o'}
 print({"1", "2", "3"} | {'python'})  # --->{'1', '2', '3', 'python'}
 
 # 交集用 &符号：
 print(h & n)  # --->{'h', 'o', 'l', 'd', 'r', 'w', 'e'}
 # 差集用 - 减号：
 print(h - n)  # --->set()空
-print(n - h)  # --->{'i', 's', 'u', 't', 'm', 'n', 'g', ',', 'f', 'y'}
+print(n - h)  # --->{'I', 's', 'u', 't', 'm', 'n', 'g', ',', 'f', 'y'}
 
 # 对称差集用脱字符：^
-print(n ^ h)  # --->{'i', 's', 'u', 't', 'm', 'n', 'g', ',', 'f', 'y'}
+print(n ^ h)  # --->{'I', 's', 'u', 't', 'm', 'n', 'g', ',', 'f', 'y'}
 
 # 使用运算符，符号两边必须都是集合类型的数据才行，方法可以是任何可迭代对象，运算符不行。
 # print(s <= 'hello world'),报错因为s是集合，'hello world是字符串'

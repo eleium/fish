@@ -52,8 +52,8 @@ love 变为新值（如 'no'）→ 条件 love == 'yes' 为 False，退出循环
 i = 1
 sum = 0
 while i <= 100:
-    sum = sum + i  # sum += i
-    i = i + 1  # i += 1
+    sum = sum + i  # sum += I
+    i = i + 1  # I += 1
 print(sum)
 
 # 死循环
@@ -61,9 +61,8 @@ while True:  # 因为True 永远是真，不会为False，所以会一直循环�
     print('世界真美好')
     break  # 用break来结束循环。
 
-
 while True:
-    answer=input('可以退出吗？')
-    if answer==('可以'):
+    answer = input('可以退出吗？')
+    if answer == ('可以'):
         break
-    print('还没好？')#如果输入了'可以',程序就不执行这一个体内的代码，直接break了。
+    print('还没好？')  # 如果输入了'可以',程序就不执行这一个体内的代码，直接break了。

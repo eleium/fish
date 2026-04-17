@@ -1,7 +1,7 @@
 # python 把集合分为set()可变的和frozenset()不可变的两种。前面学习的方法都是不改变集合的。现在学习一些改变集合的方法。
 # update(*others)方法：用others指定的值来跟新集合。
 t = frozenset('FishC')
-print(t)  # --->frozenset({'F','i','s','h','C'})
+print(t)  # --->frozenset({'F','I','s','h','C'})
 """
 这是因为 frozenset 的字符串表示形式就是 frozenset({...})，这是 Python 的设计。
 核心原因：
@@ -21,7 +21,7 @@ print(s)  # --->{'abc'}而非{'a','b','c'},注意与set('abc')的区别。
 
 s = set('FishC')
 s.update([1, 1], '23')  # 在集合s里添加1和1和2和3，因为1重复了，只添加一个1.
-print(s)  # --->{'F',1,'s','h','C','2','3','i'}
+print(s)  # --->{'F',1,'s','h','C','2','3','I'}
 # print(t.update(frozenset(t)))  # AttributeError: 'frozenset' object has no attribute 'update'.frozenset()集合没有update()方法。
 
 # 用差集/并集/合集等来更新集合：

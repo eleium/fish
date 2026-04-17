@@ -1,19 +1,19 @@
 # 字典的 改：
 d = dict.fromkeys("fishC")  # creart a dict without value.
-print(d)  # --->{'f':None,'i':None,'s':None,'h':None,'C':None}
+print(d)  # --->{'f':None,'I':None,'s':None,'h':None,'C':None}
 d["f"] = 100  # 给key f 赋值键值100
 print(d)
 
 # update()
 d.update(ishC=230)  # 添加一个键值对，字典里原来没有该键值对。
-print(d)  # -->{'f':100,'i':None,'s':None,'h':None,'C':None,'ishC':230}
+print(d)  # -->{'f':100,'I':None,'s':None,'h':None,'C':None,'ishC':230}
 # 增加了一个键值对：ishC:230
 
-d.update({"i": 100, "s": 200})
-print(d)  # -->{'f':100,'i':100,'s':200,'h':None,'C':None,'ishC':230}
+d.update({"I": 100, "s": 200})
+print(d)  # -->{'f':100,'I':100,'s':200,'h':None,'C':None,'ishC':230}
 
 d.update(C=250)  # 给单个键更改键值。
-print(d)  # --->{'h':100,'i':100,'s':100,'h':None,'C':250,'ishC':200}
+print(d)  # --->{'h':100,'I':100,'s':100,'h':None,'C':250,'ishC':200}
 
 # 字典的 查
 print(d["h"])  # -->None查找字典中的键的值。
@@ -23,7 +23,7 @@ print(d.get("o", "不存在的键"))  # --->不存在的键
 
 # 用setdefault()方法来查找一个键值，如果键不存在，就把它加入到字典里。
 d.setdefault("o", "不存在的键")
-print(d)  # --->{'f':100,'i':100,'s':100,'h':None,'C':250,'ishC':200,'o':'不存在的键'}
+print(d)  # --->{'f':100,'I':100,'s':100,'h':None,'C':250,'ishC':200,'o':'不存在的键'}
 # 多了一个键值对：o:不存在的键。这时候可以用get().
 
 
@@ -115,16 +115,16 @@ g = {'吕布': [60, 70, 80], '关羽': [80, 90, 100]}
 print(g['吕布'][1])  # --->70用下标的方法取得吕布的数学成绩是70.
 
 # 字典推导式：
-d = {'f': 70, 'i': 105, 's': 100, 'h': 104, 'C': 120}
+d = {'f': 70, 'I': 105, 's': 100, 'h': 104, 'C': 120}
 # 用字典推导式，把字典d 放到字典b中：
 b = {v: k for k, v in d.items()}  # 把d的键值对对调后放入字典b中。
 k = {k: v for k, v in d.items()}
-print(b)  # --->{70:'f',105:'i',100:'s',104:'h',120:'C'}
-print(k)  # --->{'f':70,'i':105,'s':100,'h':104,'C':120 }
+print(b)  # --->{70:'f',105:'I',100:'s',104:'h',120:'C'}
+print(k)  # --->{'f':70,'I':105,'s':100,'h':104,'C':120 }
 l = {v: k for k, v in d.items() if v > 100}  # 加了条件的字典推导式
 m = {k: v for k, v in d.items() if v > 100}
-print(l)  # --->{105:'i',104:'h',120:'C'}
-print(m)  # --->{'i':105,'h':104,'C':120}
+print(l)  # --->{105:'I',104:'h',120:'C'}
+print(m)  # --->{'I':105,'h':104,'C':120}
 
 # 求字典的key的编码值：
 d = {x: ord(x) for x in 'python'}  # 遍历字符串 'python' 的每个字符，键是字符，值是 ASCII 码。

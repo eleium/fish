@@ -9,14 +9,14 @@ Python学习管家
 方法      语法                               说明                     示例
 append()  list.append(x)                     末尾添加一个元素         [1,2].append(3) → [1,2,3]
 extend()  list.extend(iterable(可迭代))      末尾添加多个元素         [1,2].extend([3,4]) → [1,2,3,4]
-insert()  list.insert(i, x)                  在下标i处插入元素        [1,3].insert(1,2) → [1,2,3]
+insert()  list.insert(I, x)                  在下标i处插入元素        [1,3].insert(1,2) → [1,2,3]
 
 ### 二、删除元素
 方法       语法                 说明                               示例
 remove()   list.remove(x)      删除第一个匹配的元素                [1,2,1].remove(1) → [2,1]
-pop()      list.pop(i)         删除并返回下标i的元素（默认最后）    [1,2,3].pop() → 返回3
+pop()      list.pop(I)         删除并返回下标i的元素（默认最后）    [1,2,3].pop() → 返回3
 clear()    list.clear()        清空列表                            [1,2,3].clear() → []
-del del    list[i:j]           删除切片范围的元素                  del list[1:3]
+del del    list[I:j]           删除切片范围的元素                  del list[1:3]
 
 ### 三、查找与统计
 方法                  语法                  说明                      示例
@@ -70,7 +70,7 @@ a[3] = [a]
 print(a)
 
 # 这里犯了几个错误：a是list,'a'是字符串。所以a[3]=a不知道啥意思。a[3]=[a]也不知啥意思。
-#因为列表 a 不能包含自己，这会造成 无限递归 ，Python 会显示 [...] 而不是实际内容。
+# 因为列表 a 不能包含自己，这会造成 无限递归 ，Python 会显示 [...] 而不是实际内容。
 
 # a[3]=b#b没有被定义被赋值，所以报错
 a[3] = 'b'

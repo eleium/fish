@@ -6,12 +6,12 @@ while i <= 9:  # 外循环的条件，等于i<10.
         j = j + 1
     print()  # 打印空行，每一次内循环结束后就来一个空行。
     i = i + 1  # 推动外循环往9走。超过9，条件不符了就完成外循环，外循环结束。
-    #这个外循环推动器可以写在外循环条件while i<=9:下一行不？
+    # 这个外循环推动器可以写在外循环条件while I<=9:下一行不？
 
 print('--' * 80)
 
 for i in range(1, 10):  # for会对每一个在函数range(1,10)1-9不含10里取值（遍历）的i开始外循环
-    for j in range(1, i + 1):  # 内循环开始，遍历从1-i。循环里面套循环，这是内循环
+    for j in range(1, i + 1):  # 内循环开始，遍历从1-I。循环里面套循环，这是内循环
         print(f"{j}*{i}={j * i}", end="\t")  # 真正的循环体，到底每次循环要干的事。内循环里面。
         # 参数end='\t'是制表符，表示缩进4个空格。默认是end='\n'表示换行
     print()  # 每次内循环后要执行的。这里是换行的意思。这个是外循环的命令。注意#######
@@ -43,7 +43,7 @@ while的步骤：定义变量--->判断循环条件--->执行循环内容--->递
 - 条件是：是否还有下一个元素
 
 示例：
-for i in range(1, 10):
+for I in range(1, 10):
     # 隐含条件：range(1, 10)中还有元素吗？
     # 有元素 → 继续循环
     # 没有元素 → 退出循环
@@ -127,15 +127,13 @@ for index, fruit in enumerate(fruits):
     print(f"{index}: {fruit}")
 """
 
-
-
 """
 #while循环的陷阱
 1：忘记递增（死循环）
-i = 1
-while i <= 9:
-    print(i)
-    # 忘记 i = i + 1
+I = 1
+while I <= 9:
+    print(I)
+    # 忘记 I = I + 1
     # 结果：无限输出1
 
 # 陷阱2：条件永远为True
@@ -144,10 +142,10 @@ while True:
     # 没有break语句
 
 # 陷阱3：条件一开始就为False
-i = 10
-while i < 5:
-    print(i)  # 永远不会执行
-    i += 1
+I = 10
+while I < 5:
+    print(I)  # 永远不会执行
+    I += 1
 
 # 陷阱4：浮点数精度问题
 num = 0.1
@@ -159,9 +157,9 @@ while num != 1.0:
     
 # for循环的陷阱
 1：修改循环变量无效
-for i in range(5):
-    print(i)
-    i = 10  # 修改无效，下次循环i会被重新赋值
+for I in range(5):
+    print(I)
+    I = 10  # 修改无效，下次循环i会被重新赋值
 
 # 陷阱2：遍历时修改列表
 numbers = [1, 2, 3, 4, 5]
@@ -175,34 +173,32 @@ for num in numbers[:]:  # 创建副本
         numbers.remove(num)
         """
 
-
-
 """"循环的控制语句：
 # break - 立即退出循环
-for i in range(10):
-    if i == 5:
+for I in range(10):
+    if I == 5:
         break  # 退出循环
-    print(i)
+    print(I)
 # 输出：0 1 2 3 4
 
 # continue - 跳过本次循环
-for i in range(10):
-    if i == 5:
+for I in range(10):
+    if I == 5:
         continue  # 跳过本次
-    print(i)
+    print(I)
 # 输出：0 1 2 3 4 6 7 8 9
 
 # else - 循环正常结束时执行
-for i in range(5):
-    print(i)
+for I in range(5):
+    print(I)
 else:
     print("循环正常结束")
 
 # 注意：break会跳过else
-for i in range(5):
-    if i == 3:
+for I in range(5):
+    if I == 3:
         break
-    print(i)
+    print(I)
 else:
     print("不会执行")  # 因为break了
 """
@@ -231,27 +227,26 @@ else:
 - 遍历文件内容
 - 处理列表数据"""
 
-
 """优化
 # 优化1：减少循环内的计算
 # 不好的写法
-for i in range(1000):
+for I in range(1000):
     result = complex_calculation()  # 每次都计算
-    print(result + i)
+    print(result + I)
 
 # 好的写法
 result = complex_calculation()  # 只计算一次
-for i in range(1000):
-    print(result + i)
+for I in range(1000):
+    print(result + I)
 
 # 优化2：使用列表推导式
 # 不好的写法
 squares = []
-for i in range(10):
-    squares.append(i ** 2)
+for I in range(10):
+    squares.append(I ** 2)
 
 # 好的写法
-squares = [i ** 2 for i in range(10)]
+squares = [I ** 2 for I in range(10)]
 
 # 优化3：使用内置函数
 # 不好的写法
@@ -262,28 +257,26 @@ for num in numbers:
 # 好的写法
 total = sum(numbers)"""
 
-
 """嵌套的理解：
 # 嵌套循环执行次数
-for i in range(3):  # 外层循环3次
+for I in range(3):  # 外层循环3次
     for j in range(4):  # 内层循环4次
-        print(f"i={i}, j={j}")
+        print(f"I={I}, j={j}")
 # 总共执行：3 × 4 = 12次
 
 # 执行顺序：
-# i=0: j=0, j=1, j=2, j=3
-# i=1: j=0, j=1, j=2, j=3
-# i=2: j=0, j=1, j=2, j=3
+# I=0: j=0, j=1, j=2, j=3
+# I=1: j=0, j=1, j=2, j=3
+# I=2: j=0, j=1, j=2, j=3
 
 # 比喻：
 # 时钟 - 时针走1格，分针走一圈
 # 外层循环走1次，内层循环走完整遍"""
 
-
 """循环的else子句，很重要
 # for循环的else
-for i in range(5):
-    print(i)
+for I in range(5):
+    print(I)
 else:
     print("循环正常结束")
 # 输出：0 1 2 3 4 循环正常结束
@@ -298,10 +291,10 @@ else:
 # 输出：0 1 2 循环正常结束
 
 # break会跳过else
-for i in range(5):
-    if i == 3:
+for I in range(5):
+    if I == 3:
         break
-    print(i)
+    print(I)
 else:
     print("不会执行")
 # 输出：0 1 2
@@ -318,7 +311,6 @@ def find_element(lst, target):
 find_element([1, 2, 3], 2)  # 找到了：2
 find_element([1, 2, 3], 5)  # 没找到：5"""
 
-
 """实践：
 # 1. 选择合适的循环类型
 # 遍历序列 → 用for
@@ -330,14 +322,14 @@ while condition:
     do_something()
 
 # 2. 避免修改循环变量（for循环）
-for i in range(10):
+for I in range(10):
     # 不要修改i
-    print(i)
+    print(I)
 
 # 3. 使用有意义的变量名
 # 不好的写法
-for i in students:
-    print(i)
+for I in students:
+    print(I)
 
 # 好的写法
 for student in students:

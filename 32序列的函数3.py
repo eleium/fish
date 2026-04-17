@@ -25,7 +25,7 @@ print('-' * 80)
 # 但是map()函数是用计算结果返回迭代器，
 # 而filter()函数是用计算结果为真的原迭代器的元素来返回一个迭代器。
 
-print(list(filter(str.islower, 'FishiC')))  # --->['i','s','h','i']islower:判读哪一个是小写，为True，两个i都列出了。
+print(list(filter(str.islower, 'FishiC')))  # --->['I','s','h','I']islower:判读哪一个是小写，为True，两个i都列出了。
 
 # zip()聚合打包函数将多个序列打包成元
 # map()映射函数将函数映射到每个元素
