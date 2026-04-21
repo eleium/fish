@@ -9,7 +9,9 @@
 
 请编写一个程序，根据录入的利润，计算出应该发放的奖金总数？ """
 profit = float(input('请输入利润'))
+# profit:利润的意思。
 bonus = 0
+#bonus:奖金的意思。
 
 if profit <= 10:
     bonus = profit * 0.1
