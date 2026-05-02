@@ -64,9 +64,9 @@ for each in q.parents:
     print(each)
 
 """
-d:\python_learning\fish
-d:\python_learning
-d:\
+d:/python_learning/fish
+d:/python_learning
+d:/
 """
 # 可以用索引的方式获取想要的层级的目录名：
 print(q.parents[0])  # --->d:/python_learning/fish [0]是最近的父级目录。
@@ -106,3 +106,85 @@ print(Path('../fish_pythn_test').resolve())  # -->d:pythn_learning/fish_pythn_te
 print(p.iterdir())  # --><generator object Path.iterdir at 0x00000264AEC23510>得到一个可迭代生成器
 for each in p.iterdir():
     print(each)
+
+print('-' * 88)
+from pprint import pprint
+
+print(p)
+
+# 将当前文件夹下的所有文件，保存到一个列表中，用list:
+pprint(list(p.iterdir()))
+pprint([x for x in p.iterdir() if x.is_file()])
+
+print('-' * 88)
+n = p / 'elephant'  # 此时只是创建了一个路径对象，并没有实际创建文件夹。
+n.mkdir()  # 现在才创建文件夹了。
+"""
+p：在第17行定义的路径对象 p = Path("d:/python_learning/fish")，指向当前工作目录
+/：这是 pathlib 模块重载的除法运算符，用于拼接路径（不是真正的除法）
+'elephant'：要拼接的子目录名称（字符串格式）
+n：新的路径对象，结果为 d:/python_learning/fish/elephant
+
+这行代码的作用是创建目录（文件夹）。
+mkdir()：是 Path 对象的方法，全称是 "make directory"
+它会在文件系统中实际创建一个名为 elephant 的文件夹
+完整路径为：d:\python_learning\fish\elephant
+"""
+"""
+还可以这样写：
+(p / "elephant").mkdir()
+注意要加上括号，因为python中， . 的优先级高于 / 等除法运算符
+"""
+
+# 用exist_ok参数=True来避免创建重复的文件夹的时候报错：
+n.mkdir(exist_ok=True)
+
+# 用parents=ok参数来避免创建的文件夹里面有不存在的父级目录的时候报错：
+m = p / 'dog/cat/pig'
+m.mkdir(parents=True)
+"""
+m = p / 'dog/cat/pig'
+✅ 不报错  只是创建路径对象
+m.mkdir(parents=True)
+✅ 不报错   自动创建所有父目录
+m.mkdir()
+❌ 报错   父目录不存在时会报错
+"""
+
+# 这两个参数可以同时使用：
+
+k = p / 'apple/orange/butterfly'  # 创建一个路径对象，包含多级父目录
+k.mkdir(parents=True, exist_ok=True)  # 用parents=True参数来实现
+
+# Path 对象内置了一个 open() 方法，用来打开文件。注意：是Path对象的方法，不是path方法"。
+# 除了不用传入第一个参数路径之外，跟open()函数一模一样。
+
+f = open('test1.py', 'r+', encoding='utf-8')
+
+# 这个 open() 是 Python 程序的内置函数，它的作用是：
+# ✅ 在程序运行时打开文件，让 Python 代码可以读取或写入文件内容。结果可以用print打印出来。
+# ❌ 不是在编辑器中打开文件（像双击文件那样）
+f.close()
+
+# pathlib模块中的path对象可以用open()方法执行：最上方已经 from pathlib import Path
+n = n / 'flower'
+h = n.open('w', encoding='utf-8')
+h.write('hello world,do you love python?')
+h.close()
+"""
+p = Path("d:/python_learning/fish")
+n = p / 'elephant'  # n = d:/python_learning/fish/elephant
+n.mkdir()            # 实际创建文件夹elephant
+n = n / 'flower'  # n 变成 d:/python_learning/fish/elephant/flower
+#很不好的习惯：用n代替了n,人为的制造了混乱。
+
+h = n.open('w', encoding='utf-8')  # 打开文件（如果不存在会自动创建）
+h.write('hello world,do you love python?')  # 写入内容
+h.close()  # 关闭文件
+
+此时，flower的路径是：d:/python_learning/fish/elephant/flower
+"""
+
+# 用rename()方法给文件重命名：
+n.rename('tiger')
+# 不能用 h.rename('tiger'),因为h是一个文件对象，而不是一个具体的文件。
