@@ -35,6 +35,7 @@ print(p.is_dir())  # -->True
 
 # 用exists判断一个路径是否存在
 print(p.exists())  # -->True
+
 print(Path('c:/fish').exists())  # False
 
 # 用name属性，获取路径对象的最后一部分：
