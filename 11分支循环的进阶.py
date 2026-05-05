@@ -2,7 +2,6 @@
 #  条件成立时执行的语句 if condition else 条件不成立时执行的语句  condition:条件
 from selectors import SelectSelector
 
-from Tools.scripts.mailerdaemon import emparse_list_from
 
 age = int(input('how old are you?'))
 if age <= 18:

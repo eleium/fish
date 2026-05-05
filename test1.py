@@ -1,5 +1,4 @@
-origin = (0, 0)  # 这是原点
-legal_x = [-100, 100]  # 限定x轴的移动范围
+hello sir ,it is a good day,i am happy to you100, 100]  # 限定x轴的移动范围
 legal_y = [-100, 100]  # 限定y轴的移动范围
 
 
