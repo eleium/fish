@@ -2,7 +2,6 @@
 #  条件成立时执行的语句 if condition else 条件不成立时执行的语句  condition:条件
 from selectors import SelectSelector
 
-
 age = int(input('how old are you?'))
 if age <= 18:
     print('you can not smoking')
@@ -10,17 +9,17 @@ else:
     print('enjoy your time')
 
 # 从传统的if语句结构变成了条件表达式
-print("you can't smoking") if age <= 18 else print('enjoy your time')
+print("you can't smoking" if age <= 18 else 'enjoy your time')
 
 a = 3
 b = 5
 if a < b:
-    simall = a
+    small = a
 else:
-    simall = b
+    small = b
 
-simall = a if a < b else b
-print(simall)
+small = a if a < b else b
+print(small)
 
 # 条件表达式还支持多行：
 score = int(input('你考了多少分？'))
@@ -72,7 +71,7 @@ print('hello,\nworld.\nthis is the \nfirst crying to you!')
 
 # 分支结构的嵌套
 age = 18
-isMale = True  #用=表示赋值，是赋值符，用== 表示左右相对，是运算符。这里是给变量赋值，故用=,赋了个布尔值。
+isMale = True  # 用=表示赋值，是赋值符，用== 表示左右相对，是运算符。这里是给变量赋值，故用=,赋了个布尔值。
 
 if age < 18:
     print('you can not smoking')
@@ -83,4 +82,4 @@ else:
     else:
         print('no,you should go home')
 
-#又要大于等于18，又要是男孩才可以 enjoy your time,here is your smoking.这就是嵌套。
+# 又要大于等于18，又要是男孩才可以 enjoy your time,here is your smoking.这就是嵌套。
