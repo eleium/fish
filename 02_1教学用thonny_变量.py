@@ -1,7 +1,7 @@
 # 来自 Thonny的文件
 # x是变量名
 # 可以直接调用 print(x)
-520
+
 baby = 520  # 报错：invalid syntax 语法错误
 
 # variable 变量

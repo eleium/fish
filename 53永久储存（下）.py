@@ -37,7 +37,3 @@ with open('d:/python_learning/fish/test1.py', 'r+', encoding='utf-8') as w:
 # 上文就是打开文件，下文就是关闭文件。使用了上下文管理器：with语句，就不需要手动关闭文件安啦。
 # 但是一定要注意，文件语句的处理代码，一定要放在缩进里面。
 
-f=open('fish.txt','a',encoding='utf-8')
-f.write('hello,my friend.')
-print(f.read())
-f.close()
