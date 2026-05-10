@@ -2,14 +2,17 @@
 分支结构可以让程序根据条件判断，做不同的事情，而循环结构可以让程序根据条件判断，来一直做同样的事情。
 Python 有两种循环语句： while and for.
 """
+
 # while循环的语句结构：当条件符合的时候，就一直执行
 # while condition:
 #     statement(s)
 #
 
-love = 'yes'  # 给变量love赋值为字符串：yes
-while love == 'yes':  # 如果变量的值是，等于yes,就执行循环
-    love = input('今天你还爱我吗？')  # 变量love被赋值为：今天你还爱我吗？的输入：如果与yes相对就循环。
+love = "yes"  # 给变量love赋值为字符串：yes
+while love == "yes":  # 如果变量的值是，等于yes,就执行循环
+    love = input(
+        "今天你还爱我吗？"
+    )  # 变量love被赋值为：今天你还爱我吗？的输入：如果与yes相对就循环。
     # 如果不是，与yes不相等,那么循环就结束。
 
 """
@@ -57,12 +60,14 @@ while i <= 100:
 print(sum)
 
 # 死循环
-while True:  # 因为True 永远是真，不会为False，所以会一直循环，死循环。死循环也有很大的作用。
-    print('世界真美好')
+while (
+    True
+):  # 因为True 永远是真，不会为False，所以会一直循环，死循环。死循环也有很大的作用。
+    print("世界真美好")
     break  # 用break来结束循环。
 
 while True:
-    answer = input('可以退出吗？')
-    if answer == ('可以'):
+    answer = input("可以退出吗？")
+    if answer == ("可以"):
         break
-    print('还没好？')  # 如果输入了'可以',程序就不执行这一个体内的代码，直接break了。
+    print("还没好？")  # 如果输入了'可以',程序就不执行这一个体内的代码，直接break了。
