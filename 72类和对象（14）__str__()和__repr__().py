@@ -1,6 +1,7 @@
 # __call__()magic method.  调用对象魔法方法
 # 对象里既可以有属性，也可以有方法。python可以像调用函数一样，调用对象，要求这个对象的类，定义一个 __call__()magic method.
 
+# __call__ 的作用是：让一个实例对象可以像函数一样被调用。
 
 class C:
     def __call__(self):

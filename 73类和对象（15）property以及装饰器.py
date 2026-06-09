@@ -1,9 +1,10 @@
 # property()函数：
-# class property(fget=None,fset=None,fdel=None,doc=NOne)，这三个参数的意思就是 读取，更改和删除。默认是None。
+# class property(fget=None,fset=None,fdel=None,doc=None)，这三个参数的意思就是 读取，更改和删除。默认是None。
 # 说是函数，其实是类，是python 的内置类，例如：int,str,dict,list,都是内置类（class,),
 # 不用首字母大写，那是自己定义类时才会用的驼峰命名方法（pep8的规定）
 
-# property()函数，返回一个property的属性对象. property() 是 Python 的一个内置函数，用来把类里的方法“伪装”成属性调用。
+# property()函数，返回一个property的属性对象. 
+# property() 是 Python 的一个内置函数，用来把类里的方法“伪装”成属性调用。
 
 
 class C:
@@ -21,7 +22,7 @@ class C:
     def delx(self):
         del self._x
 
-    # j将上面的三个函数当作参数，传递到proprety()函数里，当作这个函数的属性，可以调用，拿到它的返回值，给到x属性去
+    # 将上面的三个函数当作参数，传递到proprety()函数里，当作这个函数的属性，可以调用，拿到它的返回值，给到x属性去
 
     x = property(getx, setx, delx)
 
@@ -156,3 +157,14 @@ print(e.__dict__)
 
 # 简单说：语法糖 = 一种更甜、更简单的写法，背后还是原来的老味道。
 
+# property 是啥意思？作用是啥？
+# property() 是 Python 的一个内置类（不是函数），作用是把类里的方法**"伪装"成属性**来调用。
+# 核心价值：当你访问 c.x 时，看起来像直接读写属性，但实际上背后自动调用了 getx() / setx() / delx() 方法。
+# 这样就能在不改变外部接口的前提下，加入数据校验、日志等逻辑。
+
+# @property 是描述符吗？
+# 是的，property 本身就是用描述符协议实现的。它的默认参数是property(fget=None,fset=None,fdel=None),所以是描述符。
+#__get__()非数据描述符，级别低。__set__()和__del__()是数据描述符，优先级别高
+
+#property 是一个内置的描述符类，
+# @property 是它的装饰器语法糖。
