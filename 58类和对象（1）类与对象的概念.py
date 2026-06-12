@@ -132,12 +132,10 @@ class C:
 
 
 c = C()
-print(
-    c.get_self()
-)  # --->  <__main__.C object at 0x0000026B63B3AED0> 打印的其实是类C的实例对象小c的内存地址。
+print(c.get_self())
+# --->  <__main__.C object at 0x0000026B63B3AED0> 打印的其实是类C的实例对象小c的内存地址。
 # 因为self就是指向对象本身的一个引用，所以打印self就会显示对象的内存地址。
-print(
-    c
-)  # ---> <__main__.C object at 0x0000026B63B3AED0> 打印的也是类C的实例对象小c的内存地址。
+print(c)
+# ---> <__main__.C object at 0x0000026B63B3AED0> 打印的也是类C的实例对象小c的内存地址。
 
 # 因为python的类，有很多对象。调用对象的时候，怎么知道调用的是哪一个呢？这时候就把要调用的对象当作参数传入类的方法里，就可以知道是哪一个对象在调用类了。
