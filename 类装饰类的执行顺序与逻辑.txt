@@ -1,0 +1,102 @@
+class Check:
+    def __init__(self, cls):
+        self.cls = cls
+    def __call__(self, *args, **kwargs):
+        self.obj = self.cls(*args, **kwargs)
+        return self
+    def __getattr__(self, name):
+        print(f"正在访问{name}")
+        return getattr(self.obj, name)
+
+@Check
+class C:
+    def say_hi(self):
+        print("hi~~")
+    def say_hey(self):
+        print("hey!!!!")
+
+c = C()
+c.say_hi      # 步骤3：只查看属性，不调用
+c.say_hi()    # 步骤4：调用方法
+
+
+
+🔍 逐步解析
+1. 定义 Check 类
+Python 读到 class Check:，只是记录下这个类的蓝图，还没有创建任何实例。
+
+2. 装饰类 C (@Check)
+@Check 是一个装饰器，它等价于执行 C = Check(C)。这个操作在类C定义完成后立即发生，不是在创建对象 c 的时候。
+
+详细步骤：
+
+先定义原始的类 C，它包含 say_hi 和 say_hey 两个方法。此时，C 这个名字指向这个原始的类对象。
+
+执行 Check(C)：调用 Check 的构造函数，C 作为参数传入 __init__。
+
+在 __init__ 中，self.cls = cls，这里 cls 就是原始的类 C。所以 self.cls 记住了原始的类 C。
+
+重新赋值：Check(C) 执行完毕后，返回了一个 Check 的实例对象。然后，C = Check(C) 这个赋值语句会让 C 这个名字不再指向原始的类，而是指向这个新创建的 Check 实例对象。
+
+结果：
+
+现在，名字 C 是一个 Check 实例，它的 cls 属性里保存着原始的类 C。
+
+3. 创建对象 (c = C())
+现在 C 是一个 Check 实例，因此 C() 会触发 Check 实例的 __call__ 方法（因为 Check 实现了 __call__，所以它的实例是可调用的）。
+
+__call__ 内部逻辑：
+
+self.obj = self.cls(*args, **kwargs)
+
+self.cls 是上一步保存的原始类 C。
+
+self.cls() 调用了原始类 C 的构造函数，创建了一个原始的 C 的实例。
+
+这个原始实例被保存在 self.obj 中。
+
+return self
+
+__call__ 返回的是 self，也就是 Check 实例本身，而不是刚刚创建的原始实例。
+
+结果：
+
+变量 c 得到的，是一个 Check 实例，而不是原始类 C 的实例。这个 Check 实例内部（通过 self.obj）“包裹”了一个原始的 C 实例。
+
+4. 访问属性 (c.say_hi)
+Python 在 c（一个 Check 实例）中查找属性 say_hi。
+
+先在 c 自身查找：c 是一个 Check 实例，它自己的属性有 cls 和 obj，没有名为 say_hi 的属性。
+
+查找失败，触发 __getattr__：因为属性查找失败，并且 Check 类实现了 __getattr__ 方法，Python 会自动调用 c.__getattr__('say_hi')。
+
+__getattr__ 内部：
+
+print(f"正在访问{name}") → 输出 正在访问say_hi。
+
+return getattr(self.obj, name)：这里的 self.obj 是之前 __call__ 中创建的原始类 C 的实例。getattr(self.obj, 'say_hi') 返回原始实例的 say_hi 方法（一个绑定方法对象）。
+
+没有括号：因为你的代码是 c.say_hi 没有调用它，所以这个表达式的结果就是那个绑定方法对象本身，没有被执行，所以不会打印 "hi~~"。
+
+5. 调用方法 (c.say_hi())
+过程和上面完全一样，直到 __getattr__ 返回原始实例的 say_hi 方法。关键在于最后多了 ()。
+
+c.say_hi 的求值结果是一个绑定方法。
+
+紧接着的 () 就是对这个绑定方法的调用。
+
+这个调用最终会执行原始 say_hi 函数内部的代码：print("hi~~")。
+
+所以 c.say_hi() 会输出两行：
+
+text
+正在访问say_hi
+hi~~
+💎 核心总结
+你的观察/疑问	准确解释
+@Check 装饰器	等价于 C = Check(C)，在类定义后立即执行。
+c = C() 的过程	执行 Check.__call__，创建原始实例并包裹在 self.obj 里，最后返回 self（Check实例）给 c。
+c 是什么类型的对象？	c 是一个 Check 实例，不是原始类 C 的实例。
+c.say_hi 为什么只打印“正在访问say_hi”？	因为访问属性时触发了 __getattr__，但你没有加括号 () 去调用它，所以方法本身没有执行。
+c.say_hi() 为什么会打印两行？	第一行来自 __getattr__ 内部的 print，第二行来自最终被调用的原始 say_hi 函数内部的 print。
+你这个例子很好地展示了代理模式：Check 类就像一个“中间人”，它拦截对属性 say_hi 的访问，打印一条日志，然后再把访问请求转发给内部“真实”的对象。
