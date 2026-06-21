@@ -88,7 +88,6 @@ class A:
 
 
 class B1(A):
-
     def __init__(self):
         A.__init__(self)  # 未绑定的父类的方法。
         # a.__init__       # ✅ 绑定的方法（bound method）— Python 自动把 a 作为 self 传进去
@@ -120,32 +119,37 @@ c = C()
 # print(C.__dict__)# __dict__是属性，不是方法，不需要小括号。
 
 # super()函数：能够在父类中搜索指定的方法，并自动绑定好self参数
-print('-'*100)
+print("-" * 100)
+
 
 class B1(A):
     def __init__(self):
         super().__init__()
-        print('我是B1啊')
+        print("我是B1啊")
+
+
 class B2(A):
     def __init__(self):
         super().__init__()
-        print('我是B2')
-class C(B1,B2):
+        print("我是B2")
+
+
+class C(B1, B2):
     def __init__(self):
         super().__init__()
-        print('我是C啊')
+        print("我是C啊")
 
-c=C()
 
-#只要用super()方法，他就会用MRO顺序自动向上寻找父类的方法，并自动绑定self。自动避免重复的调用。
-#MRO：  method resolution order 方法解析顺序
-#查找一个类的MRO顺序，有两种方法：
-#用类名.mro()
+c = C()
+
+# 只要用super()方法，他就会用MRO顺序自动向上寻找父类的方法，并自动绑定self。自动避免重复的调用。
+# MRO：  method resolution order 方法解析顺序
+# 查找一个类的MRO顺序，有两种方法：
+# 用类名.mro()
 print(C.mro())
-#-->[<class '__main__.C'>, <class '__main__.B1'>, <class '__main__.B2'>, <class '__main__.A'>, <class 'object'>]一个列表
-#<class 'object'>是所有类的基类，所有类都继承自 object,是隐蔽的继承
+# -->[<class '__main__.C'>, <class '__main__.B1'>, <class '__main__.B2'>, <class '__main__.A'>, <class 'object'>]一个列表
+# <class 'object'>是所有类的基类，所有类都继承自 object,是隐蔽的继承
 
-#第二种查找MRO的办法：
+# 第二种查找MRO的办法：
 print(C.__mro__)
-#-->(<class '__main__.C'>, <class '__main__.B1'>, <class '__main__.B2'>, <class '__main__.A'>, <class 'object'>)
-
+# -->(<class '__main__.C'>, <class '__main__.B1'>, <class '__main__.B2'>, <class '__main__.A'>, <class 'object'>)

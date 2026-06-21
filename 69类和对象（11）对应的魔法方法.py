@@ -25,7 +25,7 @@ print(getattr(c, "_C__age"))
 # --->18    获取对象c的age属性值是18
 
 setattr(c, "_C__age", 20)
-#更改c对象的age属性值，原来是18，改为20
+# 更改c对象的age属性值，原来是18，改为20
 print(getattr(c, "_C__age"))
 # -->20    获取更改后的c对象的age属性值：20
 
@@ -36,7 +36,7 @@ print(getattr(c, "_C__age"))
 
 # delattr的用法与del()的用法一样。
 delattr(c, "_C__age")
-#删除对象c的age属性
+# 删除对象c的age属性
 print(hasattr(c, "_C__age"))
 # --->false  对象c的age属性没有了。
 
@@ -55,13 +55,13 @@ class C:
         # 记住：只有用 self.xxx 定义的才是实例属性，光写 xxx 只是局部变量。
 
     def __getattribute__(self, attrname):
-        #给类C定义这么一个方法：__getattribute__()，用来获取对象的attrname属性。
-        #此时的attrname是参数的名字，是形参，可以随便写，它对应的name，是实参，就是 '小甲鱼'.
+        # 给类C定义这么一个方法：__getattribute__()，用来获取对象的attrname属性。
+        # 此时的attrname是参数的名字，是形参，可以随便写，它对应的name，是实参，就是 '小甲鱼'.
         print("拿来吧你！")
         # 拦截到了，就会打印：拿来吧你。所谓拦截就是先运行，先执行，把后面的代码拦住了。
         return super().__getattribute__(attrname)
         # 把attrname当作实参传递进去。super()的作用是根据MRO规则，向父类寻找。找啥呢？找真正的父类的属性。
-         #而__getattribute__()的上级是类C,类C的没有attrname属性，那就返回类C的哪一个属性？
+        # 而__getattribute__()的上级是类C,类C的没有attrname属性，那就返回类C的哪一个属性？
         # __getattribute__ 是实例方法（第一个参数是 self）
         # 调用 super() 时，找的是当前类 C 的父类
         # 类 C 没有显式继承，默认父类是 object
@@ -73,9 +73,9 @@ class C:
         #    object.__getattribute__ 是一个方法，不是属性
         # 这个方法的功能是在实例对象中查找属性
         # 它接收参数 name（属性名），然后去实例的 __dict__ 中找
-        #找到具体是name,还是_C__age,由对象c调用方法时决定:
+        # 找到具体是name,还是_C__age,由对象c调用方法时决定:
         # 对象c调用的是c.naem,那么attrnmae==name  ==小甲鱼
-        #对象c调用的是c._C__age,那么 attrname == _C__age, ==18
+        # 对象c调用的是c._C__age,那么 attrname == _C__age, ==18
 
 
 c = C("小甲鱼", 18)
@@ -86,8 +86,6 @@ print(getattr(c, "name"))
 
 # 也可以用改编名称的方法访问：
 print(c._C__age)
-
-
 
 
 # 方法	                触发时机	                                主要作用	         默认行为
@@ -115,7 +113,6 @@ print(c._C__age)
 # 内部访问自身属性	必须用 super().__getattribute__，否则递归	 可直接用 self.xxx（因为只会在缺失时调用，不会递归）
 # 常见错误	无限递归	                                        忘记属性存在时不会触发
 # 性能影响	每个属性访问都经过，开销大	                          仅缺失属性时触发，开销小
-
 
 
 """
@@ -184,13 +181,13 @@ print(c._C__age)            # ✅ 通过改名后的名字可以访问（18）
 
 # 1. 两者都是魔法方法
 # __getattr__() 和 __getattribute__() 都是 Python 的魔法方法（也称为特殊方法、双下方法）。
-#它们俩的作用都是 获取对象的属性。区别是一个手动获取__getattr__(),另外一个是自动获取__getattribute__().
+# 它们俩的作用都是 获取对象的属性。区别是一个手动获取__getattr__(),另外一个是自动获取__getattribute__().
 # 魔法方法的特征：
 # 名称前后都有双下划线 __（比如 __init__、__str__、__getattr__）
 # Python 在特定场景自动调用，不需要手动调用
 # 用于实现 Python 的内置行为或运算符重载
 
-#总结
+# 总结
 # 问题	                            答案
 # 两者都是魔法方法？	             ✅ 是
 # 魔法方法和普通方法区别？	         自动调用 vs 手动调用；      双下划线 vs 普通命名
@@ -200,8 +197,6 @@ print(c._C__age)            # ✅ 通过改名后的名字可以访问（18）
 # 一句话记忆：
 # __getattribute__ 是全部拦截（每个属性都经过）
 # __getattr__ 是兜底处理（只有缺失才触发）
-
-
 
 
 class C:
@@ -222,9 +217,9 @@ class C:
 
 c = C("小甲鱼", 18)
 print(c.fishC)
-#---->拿来吧你
-#--->I love fishC
-#--->Nove  这个None是由于print(c.fishC)的存在。返回值是None.
+# ---->拿来吧你
+# --->I love fishC
+# --->Nove  这个None是由于print(c.fishC)的存在。返回值是None.
 # print 是给人看的，return 是给程序用的。没有 return 的函数，统一返回 None。
 
 # 当 Python 执行 c.fishC 时：
@@ -238,7 +233,7 @@ print(c.fishC)
 # Python 中每一个函数/方法，如果没有显式 return，都默认返回 None。
 # print() 只是往屏幕上输出内容，和函数的返回值是两码事。
 
-#赋值属性对应的是__setattr__()方法
+# 赋值属性对应的是__setattr__()方法
 
 """
 class D:
@@ -266,39 +261,45 @@ print(d.name)
 # self.name = value → 属性赋值语法 → 触发 __setattr__
 # self.__dict__[name] = value → 字典赋值语法 → 不触发 __setattr__
 
-#总结表
+# 总结表
 # 魔法方法	             内部禁止写法	             内部正确写法
 # __setattr__	        self.attr = value	       super().__setattr__(name, value) 或 self.__dict__[name] = value直接操作对象的属性字典
 # __getattribute__	    self.attr	               super().__getattribute__(name)
 # __getattr__	        self.attr（如果属性存在）	super().__getattr__(name) 或直接返回值
 
-print('#'*88)
+print("#" * 88)
+
+
 class D:
-    def __setattr__(self,name,value):
-        #__setattr__() 是一个拦截器，当尝试给实例的属性赋值时自动调用。在这个方法内部，你需要手动实现真正的赋值（否则属性不会被设置）。
+    def __setattr__(self, name, value):
+        # __setattr__() 是一个拦截器，当尝试给实例的属性赋值时自动调用。在这个方法内部，你需要手动实现真正的赋值（否则属性不会被设置）。
 
-        #形参和实参的关系
-        #形参和实参：是接收/传递关系（实参的值传递给形参）
-        #name 和 value：是两个独立的形参，没有直接赋值关系
-        self.__dict__[name]=value
-        #用直接操作对象的属性字典的方式，直接给键name 赋值
+        # 形参和实参的关系
+        # 形参和实参：是接收/传递关系（实参的值传递给形参）
+        # name 和 value：是两个独立的形参，没有直接赋值关系
+        self.__dict__[name] = value
+        # 用直接操作对象的属性字典的方式，直接给键name 赋值
 
 
-d=D()
-d.name='小甲鱼'
+d = D()
+d.name = "小甲鱼"
 print(d.name)
-#--->小甲鱼
+# --->小甲鱼
 
-#del也同样使用：
+
+# del也同样使用：
 class D:
-    def __setattr__(self,name,value):
-        self.__dict__[name]=value
-    def __delattr__(self,name):
+    def __setattr__(self, name, value):
+        self.__dict__[name] = value
+
+    def __delattr__(self, name):
         del self.__dict__[name]
-d=D()
-d.name='小甲鱼'
+
+
+d = D()
+d.name = "小甲鱼"
 print(d.__dict__)
-#--->{name:'小甲鱼'}  查看当前的对象的属性
+# --->{name:'小甲鱼'}  查看当前的对象的属性
 del d.name
 print(d.__dict__)
-#---->{}  属性被删除后，变成了空的字典
+# ---->{}  属性被删除后，变成了空的字典

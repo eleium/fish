@@ -237,29 +237,29 @@ print("-" * 88)
 class Check:
     def __init__(self, cls):
         self.cls = cls
-        #类Check的实例化对象C=Chenk(C),它的属性被赋值为类C.也即是C.cls=C，用于储存记住类C
+        # 类Check的实例化对象C=Chenk(C),它的属性被赋值为类C.也即是C.cls=C，用于储存记住类C
 
     def __call__(self, *args, **kwargs):
-        #__call__的作用：把传入的类当作实例化对象一样使用
+        # __call__的作用：把传入的类当作实例化对象一样使用
         self.obj = self.cls(*args, **kwargs)
-        #变量活在函数里，属性活在对象里
-        #self.obj是__call__()函数的定义的一个实例化对象本身C的obj属性，用于储存拿到的数据。
+        # 变量活在函数里，属性活在对象里
+        # self.obj是__call__()函数的定义的一个实例化对象本身C的obj属性，用于储存拿到的数据。
         # 现在这个数据就是Check的实例化对象C的属性，也就是类C定义的两个方法：say_hi,say_hey.
         return self
-        #返回这个类C.这个类C其实是类Check的一个实例化对象 C.    这么说不准确。
-        #return self 返回的是 Check 实例本身（也就是当前这个对象），这个对象内部通过 self.obj 保存了原始类 C 的实例
+        # 返回这个类C.这个类C其实是类Check的一个实例化对象 C.    这么说不准确。
+        # return self 返回的是 Check 实例本身（也就是当前这个对象），这个对象内部通过 self.obj 保存了原始类 C 的实例
 
     def __getattr__(self, name):
-        #__getattr__()作用：如果上面Check的前面的代码有小c要调用的属性，就执行，而__getattr__()就隐身不动。
-        #如果Check前面的代码里面，没有下面类C的实例化对象小c要访问调用的属性，就跳出来，拦截这个不存在的属性，并报错警告。
+        # __getattr__()作用：如果上面Check的前面的代码有小c要调用的属性，就执行，而__getattr__()就隐身不动。
+        # 如果Check前面的代码里面，没有下面类C的实例化对象小c要访问调用的属性，就跳出来，拦截这个不存在的属性，并报错警告。
         print(f"正在访问{name}")
         return getattr(self.obj, name)
-        #返回上面的__call__()定义的变量self.obj,也就是类C的被类C的实例化对象所调用的属性的名字，比如say_hi,或者say_hey，或者根本不存在的一个属性。
+        # 返回上面的__call__()定义的变量self.obj,也就是类C的被类C的实例化对象所调用的属性的名字，比如say_hi,或者say_hey，或者根本不存在的一个属性。
 
         # 如果下面的类C的实例化对象小c,调用了一个不存在的属性，比如c.hello(),getattr()也会有回应：
 
         # 正在访问hello
-        #然后报错，指出这个属性不存在。
+        # 然后报错，指出这个属性不存在。
         # Traceback (most recent call last):=
         #   File "d:\python_learning\fish\78类和对象（20）.py", line 265, in <module>
         # c.hello()
@@ -290,94 +290,106 @@ c.say_hi()  # 有()，表示调用函数say_hi()
 # --->hi~~~
 
 # c.hello()  访问一个不存在的属性
-#--->正在访问hello
+# --->正在访问hello
 # 然后报错：AttributeError: 'C' object has no attribute 'hello'
 
 
-#如果更改一下类C:
+# 如果更改一下类C:
+
 
 @Check
 class C:
-    def __init__(self,name):
-        self.name=name
+    def __init__(self, name):
+        self.name = name
+
     def say_hi(self):
-        print(f'hi{self.name}~~')
+        print(f"hi{self.name}~~")
+
     def say_hey(self):
-        print(f'hey~~~{self.name}')
-c1=C('c1')
-c2=C("c2")
+        print(f"hey~~~{self.name}")
+
+
+c1 = C("c1")
+c2 = C("c2")
 print(c1.name)
-#--->正在访问name
-#---->c2
+# --->正在访问name
+# ---->c2
 print(c2.name)
-#---->正在访问name
-#---->c2
+# ---->正在访问name
+# ---->c2
 
 c1.say_hi()
-#--->正在访问say_hi
-#--->hic2~~    也是说正在访问的是c2
+# --->正在访问say_hi
+# --->hic2~~    也是说正在访问的是c2
 
-#显然，c1的name属性被c2的name属性覆盖了。
+# 显然，c1的name属性被c2的name属性覆盖了。
 
-#因为@Check,类C被装饰器@Check装饰过，所以c1和c2就不是类C的实例了，而是类Check的实例对象。
+# 因为@Check,类C被装饰器@Check装饰过，所以c1和c2就不是类C的实例了，而是类Check的实例对象。
 print(c1)
-#----><__main__.Check object at 0x0000027A4D288AD0> c1是类Check的 对象
+# ----><__main__.Check object at 0x0000027A4D288AD0> c1是类Check的 对象
 
-#所以c1c2的字符串参数：'c1',"c2"事实上传递给的是Check的__call__()magic method。
+# 所以c1c2的字符串参数：'c1',"c2"事实上传递给的是Check的__call__()magic method。
 # 此时(c1=C('c1'),c2=C("c2"))，并不是在实例化对象,而是调用早已经实例化好的对象。
-#实例化对象在@Check的时候就创建好了：C=Check(C)
-#class C，其实是在访问__call_()的时候，才完成了实例化对象：self.obj=self.cls(*args,**kwargs),并将实例化对象传递给了self.obj属性
-#但是返回的并不是self.obj,而是self.这个self就是Check的实例化对象自身，而非类C的对象
-#此时，c1.name,c2.name访问的是Check的实例化对象的name属性
-#Check没有name属性，就会去查找__getattr__(self,name)魔法方法。当访问一个对象没有的属性的时候才会触发__getattr__().
-#此时正好有self.name属性，__getattr__()就先打印一句：print(f"正在访问{name}")--->正在访问name,然后调用getattr()函数，获取self.obj的name属性
-#而self.obj保存的是原始类C的实例化对象c=C(),c1=C('c1'),这时候name='c1',c2=C("c2"),这时候name="c2"
-#在@Check的时候，只实例化了一个对象C=Check(C),而c1和c2是调用了两次函数，访问了两次__call__()魔法方法，所以后面的c2的name属性会覆盖c1的name属性
-#c1 和 c2 都是 Check 的实例对象，而且是同一个！它们只是对同一个 Check 实例的两次不同调用，每次调用都把内部的 self.obj 覆盖了。
+# 实例化对象在@Check的时候就创建好了：C=Check(C)
+# class C，其实是在访问__call_()的时候，才完成了实例化对象：self.obj=self.cls(*args,**kwargs),并将实例化对象传递给了self.obj属性
+# 但是返回的并不是self.obj,而是self.这个self就是Check的实例化对象自身，而非类C的对象
+# 此时，c1.name,c2.name访问的是Check的实例化对象的name属性
+# Check没有name属性，就会去查找__getattr__(self,name)魔法方法。当访问一个对象没有的属性的时候才会触发__getattr__().
+# 此时正好有self.name属性，__getattr__()就先打印一句：print(f"正在访问{name}")--->正在访问name,然后调用getattr()函数，获取self.obj的name属性
+# 而self.obj保存的是原始类C的实例化对象c=C(),c1=C('c1'),这时候name='c1',c2=C("c2"),这时候name="c2"
+# 在@Check的时候，只实例化了一个对象C=Check(C),而c1和c2是调用了两次函数，访问了两次__call__()魔法方法，所以后面的c2的name属性会覆盖c1的name属性
+# c1 和 c2 都是 Check 的实例对象，而且是同一个！它们只是对同一个 Check 实例的两次不同调用，每次调用都把内部的 self.obj 覆盖了。
 
-#同一个实例化对象的属性是动态的，可以是不同的，多个的。有几个就意味着调用了几次__call__()函数。后面的属性覆盖前面的。
-#所以，c1、c2实际上是调用了两次C=Check(C),而不是创建了两个实例化对象。调用两次，那么第二次的属性就会覆盖第一次的属性
-print('-.-'*88)
-#如何解决上面的两次调用的，造成的name属性被覆盖的问题：
+# 同一个实例化对象的属性是动态的，可以是不同的，多个的。有几个就意味着调用了几次__call__()函数。后面的属性覆盖前面的。
+# 所以，c1、c2实际上是调用了两次C=Check(C),而不是创建了两个实例化对象。调用两次，那么第二次的属性就会覆盖第一次的属性
+print("-.-" * 88)
+# 如何解决上面的两次调用的，造成的name属性被覆盖的问题：
+
 
 def report(cls):
-    #给类Check套一层外壳，先定义一个report函数，函数的参数是cls
+    # 给类Check套一层外壳，先定义一个report函数，函数的参数是cls
     class Check:
-        def __init__(self,*args,**kwargs):
-            self.obj=cls(*args,**kwargs)
-            #*args,**kwargs是两个收集参数，收集对象的位置参数和关键字参数
-        def __getattr__(self,name):
-            print(f'正在访问{name}')
-            return getattr(self.obj,name)
+        def __init__(self, *args, **kwargs):
+            self.obj = cls(*args, **kwargs)
+            # *args,**kwargs是两个收集参数，收集对象的位置参数和关键字参数
+
+        def __getattr__(self, name):
+            print(f"正在访问{name}")
+            return getattr(self.obj, name)
+
     return Check
+
 
 @report
 class C:
-    #被@report装饰过的class C: 其实是被替换为class Check: 因为report()返回的是Check类。
-    def __init__(self,name):
-        self.name=name
-    def say_hi(self):
-        print(f'hi{self.name}~~~')
-    def say_hey(self):
-        print(f'hey{self.name}~~~')
+    # 被@report装饰过的class C: 其实是被替换为class Check: 因为report()返回的是Check类。
+    def __init__(self, name):
+        self.name = name
 
-c1=C('c1')
-c2=C('c2')
-#当执行这两行的时候，就相当与给类Check实例化了两个对象。实例化Check，就会调用它的构造函数
-#而它的构造函数做的事情，就是去实例化@report装饰过的这个类,即：class C
-#然后把实例化后的对象，保存在self.obj属性中
-#因为Check类 被实例化了两次，而不是被调用了两次，所以不会出现属性被覆盖的情况
+    def say_hi(self):
+        print(f"hi{self.name}~~~")
+
+    def say_hey(self):
+        print(f"hey{self.name}~~~")
+
+
+c1 = C("c1")
+c2 = C("c2")
+# 当执行这两行的时候，就相当与给类Check实例化了两个对象。实例化Check，就会调用它的构造函数
+# 而它的构造函数做的事情，就是去实例化@report装饰过的这个类,即：class C
+# 然后把实例化后的对象，保存在self.obj属性中
+# 因为Check类 被实例化了两次，而不是被调用了两次，所以不会出现属性被覆盖的情况
 print(c1.name)
-#--->正在访问name
-#---->c1
+# --->正在访问name
+# ---->c1
 
 print(c2.name)
-#--->正在访问nmae
-#--->c2
+# --->正在访问nmae
+# --->c2
 
 print(c1.say_hi())
 # ---->正在访问say_hi
 # ---->hic1~~~
 c2.say_hey()
-#--->正在访问say_hey
-#--->heyc2~~~
+# --->正在访问say_hey
+# --->heyc2~~~

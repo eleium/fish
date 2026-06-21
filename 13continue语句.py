@@ -55,7 +55,6 @@ if 分支的代码块(包含 print 和 break)不会执行.连break都不执行�
 
 i = 1
 while i <= 9:
-
     j = 1
     while j <= i:
         print(j, "*", i, "=", j * i, end=" ")

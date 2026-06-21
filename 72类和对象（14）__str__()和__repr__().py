@@ -3,6 +3,7 @@
 
 # __call__ 的作用是：让一个实例对象可以像函数一样被调用。
 
+
 class C:
     def __call__(self):
         print("Hi~~")
@@ -158,6 +159,7 @@ print(cs)
 # __repr__()magic method 的适用场景更多，用起来也更稳。
 # 不过，在同时定义__repr__()和__str__()方法的时候，可以让对象在不同的场景下，实现不同的显示效果
 
+
 class C:
     def __init__(self, data):
         self.data = data
@@ -176,13 +178,13 @@ c = C(250)
 print(c)
 # --->data=250  这是直接打印的场景，得到data=250，调用的是__str__()，得到return :data={self.data}
 c
-#--->C(250)    这是直接访问的方式，得到C(250),调用的是__repr__(),得到是 return : c({self.data})
+# --->C(250)    这是直接访问的方式，得到C(250),调用的是__repr__(),得到是 return : c({self.data})
 
 c + 250
-print(c)    #用两种魔法方法做加法，打印的效果依然会遵循每一种魔法方法定义的返回值
+print(c)  # 用两种魔法方法做加法，打印的效果依然会遵循每一种魔法方法定义的返回值
 # --->data=500
 c
-#--->C(500)
+# --->C(500)
 
 
 """

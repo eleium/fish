@@ -188,10 +188,10 @@ print(D.x)
 
 # 当用type()函数来构造，像类D这种继承了定义过__init_subclass__()的父类时，
 # 如果需要给__init_sbuclass__()传递参数，比如需要传递value参数时，就可以通过第四个参数进行接力了。
-D=type('D',(C,),dict(x=250),value=520)
-#--->我喜欢python 立即触发了父类C的__init_subclass__()
+D = type("D", (C,), dict(x=250), value=520)
+# --->我喜欢python 立即触发了父类C的__init_subclass__()
 print(D.x)
-#--->520 虽然访问的是类D的x属性，但是还是优先返回的是父类C的x的属性。
+# --->520 虽然访问的是类D的x属性，但是还是优先返回的是父类C的x的属性。
 
 
 # 关键点： __init_subclass__ 是在子类被定义时触发的，在子类的内容（x=250）被处理之后，但在子类被完全创建之前。
@@ -206,19 +206,20 @@ print(D.x)
 # 它的设计目的就是让父类在子类创建时有机会修改子类的行为（比如加属性、加装饰器、做校验等）。
 
 
+# 因为type(name,base,dict,**kwds)是收集参数，所以可以定义子类的时候，用多个参数
 
-#因为type(name,base,dict,**kwds)是收集参数，所以可以定义子类的时候，用多个参数
 
 class C:
-    def __init_subclass__(cls,value1,value2):
-        print('我喜欢python啊~~~')
-        cls.x=value1
-        cls.y=value2
+    def __init_subclass__(cls, value1, value2):
+        print("我喜欢python啊~~~")
+        cls.x = value1
+        cls.y = value2
 
-D=type('D',(C,),dict(x=250),value1=500,value2=800)
-#--->我喜欢python啊~~~
+
+D = type("D", (C,), dict(x=250), value1=500, value2=800)
+# --->我喜欢python啊~~~
 
 print(D.x)
-#--->500
+# --->500
 print(D.y)
-#--->800
+# --->800

@@ -1,8 +1,7 @@
+# 在创建了一个类之后，要定义一些函数当作实例化的对象的方法，这些方法的返回值的情况如下：
 
-#在创建了一个类之后，要定义一些函数当作实例化的对象的方法，这些方法的返回值的情况如下：
 
-
-'''方法的返回值规则
+"""方法的返回值规则
 1. 有明确的 return
 python
 def add(a, b):
@@ -61,7 +60,7 @@ python
 def wrapper(x):
     print(f"Processing {x}")  # 执行操作
     # 没有return，返回None
-'''
+"""
 
 
 class MyClass:
@@ -79,16 +78,18 @@ class MyClass:
         x = 5
         x += 1  # 执行表达式
         return x  # 返回值
+
     def method_empty_return(self):
         print("Doing something")
         return  # 返回None
 
+
 obj = MyClass()
 print(obj.method_with_return())  # 42
 print(obj.method_side_effect())  # None
-print(obj.method_expression())   # None
-print(obj.method_both())         # 6
-print(obj.method_empty_return()) # None
+print(obj.method_expression())  # None
+print(obj.method_both())  # 6
+print(obj.method_empty_return())  # None
 
 """
 核心要点

@@ -99,7 +99,8 @@ class C:
 # 简单的工具类、混入类（Mixin）、抽象基类可能不需要 __init__
 
 # 如果需要为每个实例设置不同的属性值，就必须使用 __init__
-print('-'*88)
+print("-" * 88)
+
 
 class D:
     def __get__(self, instance, owner):
@@ -112,135 +113,162 @@ class D:
     def __delete__(self, instance):
         del instance._x
 
+
 class C:
-    def __init__(self,x=250):
-        #通过一个属性 x 来间接的管理私有变量_x，那么默认的话可以写成： x=250
-        self._x=x
-        #也就是：def __init__(self,x):--->self._x=250
-    x=D()
-        #实例化一个对象x。这就是描述符。
-c=C()
+    def __init__(self, x=250):
+        # 通过一个属性 x 来间接的管理私有变量_x，那么默认的话可以写成： x=250
+        self._x = x
+        # 也就是：def __init__(self,x):--->self._x=250
+
+    x = D()
+    # 实例化一个对象x。这就是描述符。
+
+
+c = C()
 print(c.x)
-#--->250
-c.x=520
+# --->250
+c.x = 520
 print(c.__dict__)
-#--->{'_x':520}
+# --->{'_x':520}
 del c.x
 print(c.__dict__)
-#--->{}
+# --->{}
 
-#跟用property()的效果一样。但是property()方法明显浅显易懂。
-#这种方法，在类D中访问类C的内部私有属性，显然不合理。为啥还用描述符呢？因为是现有描述符，再有property()属性的
+# 跟用property()的效果一样。但是property()方法明显浅显易懂。
+# 这种方法，在类D中访问类C的内部私有属性，显然不合理。为啥还用描述符呢？因为是现有描述符，再有property()属性的
 
-#这节课目的：如何用描述符造出自己的properyt()函数
+# 这节课目的：如何用描述符造出自己的properyt()函数
+
 
 class MyProperty:
-    def __init__(self,fget=None,fset=None,fdel=None):
-        self.fget=fget
-        self.fset=fset
-        self.fdel=fdel
-    def __get__(self,instance,owner):
+    def __init__(self, fget=None, fset=None, fdel=None):
+        self.fget = fget
+        self.fset = fset
+        self.fdel = fdel
+
+    def __get__(self, instance, owner):
         return self.fget(instance)
-    def __set__(self,instance,value):
-        self.fset(instance,value)
-    def __delete__(self,instance):
+
+    def __set__(self, instance, value):
+        self.fset(instance, value)
+
+    def __delete__(self, instance):
         self.fdel(instance)
+
 
 class C:
     def __init__(self):
-        self._x=250
+        self._x = 250
+
     def getx(self):
         return self._x
-    def setx(self,value):
-        self._x=value
+
+    def setx(self, value):
+        self._x = value
+
     def delx(self):
         del self._x
 
-    x=MyProperty(getx,setx,delx)
-    #这是用property()方法。
+    x = MyProperty(getx, setx, delx)
+    # 这是用property()方法。
 
-c=C()
+
+c = C()
 print(c.x)
-#--->250
-c.x=520
+# --->250
+c.x = 520
 print(c.__dict__)
-#--->{'_x':520}
+# --->{'_x':520}
 del c.x
 print(c.__dict__)
-#--->{}
+# --->{}
 
 
-#用装饰器的方法实现
+# 用装饰器的方法实现
 class MyProperty:
-    def __init__(self,fget=None,fset=None,fdel=None):
-        self.fget=fget
-        self.fset=fset
-        self.fdel=fdel
-    def __get__(self,instance,owner):
+    def __init__(self, fget=None, fset=None, fdel=None):
+        self.fget = fget
+        self.fset = fset
+        self.fdel = fdel
+
+    def __get__(self, instance, owner):
         return self.fget(instance)
-    def __set__(self,instance,value):
-        self.fset(instance,value)
-    def __delete__(self,instance):
+
+    def __set__(self, instance, value):
+        self.fset(instance, value)
+
+    def __delete__(self, instance):
         self.fdel(instance)
-    def getter(self,func):
-        self.fget=func
+
+    def getter(self, func):
+        self.fget = func
         return self
-    def setter(self,func):
-        self.fset=func
+
+    def setter(self, func):
+        self.fset = func
         return self
-    def deleter(self,func):
-        self.fdel=func
+
+    def deleter(self, func):
+        self.fdel = func
         return self
 
 
 class D:
     def __init__(self):
-        self._x=250
+        self._x = 250
+
     @MyProperty
     def x(self):
         return self._x
+
     @x.setter
-    def x(self,value):
-        self._x=value
+    def x(self, value):
+        self._x = value
+
     @x.deleter
     def x(self):
         del self._x
 
 
-d=D()
+d = D()
 print(d.x)
-#--->250
-d.x=520
+# --->250
+d.x = 520
 print(d.__dict__)
-#--->{'_x':520}
+# --->{'_x':520}
 del d.x
 print(d.__dict__)
-#--->{}
+# --->{}
 
 
-#直接用property()的方法：
+# 直接用property()的方法：
+
 
 class E:
     def __init__(self):
-        self._x=250
-    x=MyProperty()
+        self._x = 250
+
+    x = MyProperty()
+
     @x.getter
     def x(self):
         return self._x
+
     @x.setter
-    def x(self,value):
-        self._x=value
+    def x(self, value):
+        self._x = value
+
     @x.deleter
     def x(self):
         del self._x
 
 
-e=E()
+e = E()
 print(e.x)
-#--->250
-e.x=520
+# --->250
+e.x = 520
 print(e.__dict__)
-#--->{'_x':520}
+# --->{'_x':520}
 del e.x
 print(e.__dict__)
-#--->{}
+# --->{}

@@ -250,7 +250,8 @@ s2 = S("pycharm")
 # --->TypeError: 'NoneType' object is not callable
 # 就是不想让魔法方法__le__()实现操作，直接定义为：None:
 
-#同样适用于上面的代偿实现：
+
+# 同样适用于上面的代偿实现：
 class C:
     def __init__(self, data):
         self.data = data
@@ -267,11 +268,12 @@ class C:
         item = self.data[self.i]
         self.i += 1
         return item
-    __contains__=None
 
-c=C([1,2,3,4,5])
+    __contains__ = None
+
+
+c = C([1, 2, 3, 4, 5])
 print(3 in c)
-#--->TypeError: 'C' object is not a container
-#因为有__contains_=None,就是告知，不希望有关系判断的操作存在。
+# --->TypeError: 'C' object is not a container
+# 因为有__contains_=None,就是告知，不希望有关系判断的操作存在。
 # 同样也影响到 not in.
-
