@@ -3,7 +3,7 @@
 # 说是函数，其实是类，是python 的内置类，例如：int,str,dict,list,都是内置类（class,),
 # 不用首字母大写，那是自己定义类时才会用的驼峰命名方法（pep8的规定）
 
-# property()函数，返回一个property的属性对象. 
+# property()函数，返回一个property的属性对象.
 # property() 是 Python 的一个内置函数，用来把类里的方法“伪装”成属性调用。
 
 
@@ -134,26 +134,26 @@ class E:
     def x(self):
         del self._x
 
+
 # @property 本身默认就是 getter,所以第一个不需要写@x.getter
 
-e=E()
+e = E()
 print(e.x)
-#--->250
-e.x=520
+# --->250
+e.x = 520
 print(e.x)
-#--->520
+# --->520
 print(e.__dict__)
 # --->{'._x':520}
 del e.x
 print(e.x)
-#报错：AttributeError:"E" object has no attribute '_x',Did you main 'x'? 应为刚刚e的x属性已经被deleter了，而self._x=x,x属性已经被删除。
-    
+# 报错：AttributeError:"E" object has no attribute '_x',Did you main 'x'? 应为刚刚e的x属性已经被deleter了，而self._x=x,x属性已经被删除。
+
 print(e.__dict__)
-#--->{}
+# --->{}
 
 
-
-#语法糖（Syntactic Sugar）指的是编程语言中为了让你写代码更舒服、更简洁而设计的一种语法。它不会带来新的功能，只是把原本繁琐、复杂的写法变得"甜甜的"、更容易理解。
+# 语法糖（Syntactic Sugar）指的是编程语言中为了让你写代码更舒服、更简洁而设计的一种语法。它不会带来新的功能，只是把原本繁琐、复杂的写法变得"甜甜的"、更容易理解。
 
 # 简单说：语法糖 = 一种更甜、更简单的写法，背后还是原来的老味道。
 
@@ -164,7 +164,7 @@ print(e.__dict__)
 
 # @property 是描述符吗？
 # 是的，property 本身就是用描述符协议实现的。它的默认参数是property(fget=None,fset=None,fdel=None),所以是描述符。
-#__get__()非数据描述符，级别低。__set__()和__del__()是数据描述符，优先级别高
+# __get__()非数据描述符，级别低。__set__()和__del__()是数据描述符，优先级别高
 
-#property 是一个内置的描述符类，
+# property 是一个内置的描述符类，
 # @property 是它的装饰器语法糖。
