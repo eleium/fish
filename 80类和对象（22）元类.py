@@ -67,7 +67,7 @@ class C(metaclass=MetaC):
 #当创建类C刚刚完成的时候，就执行调用了__new__()和__init__()
 
 c=C()
-#---->__new__() in C!!~~ 
+#---->__new__() in C!!~~
 #--->__init__() in C~~~
 # 刚刚创建实例化对象，就立即调用了类C的__new__()方法和__init__()方法
 
@@ -97,14 +97,14 @@ class C(metaclass=MetaC):
         print('__init__() in C~~~')
 
 #--->mcls=<class '__main__.MetaC'>,name=C,bases=(),
-# attrs={'__module__': '__main__', '__qualname__': 'C', '__new__': <function C.__new__ at 0x0000021FF6D09440>, 
+# attrs={'__module__': '__main__', '__qualname__': 'C', '__new__': <function C.__new__ at 0x0000021FF6D09440>,
 # '__init__': <function C.__init__ at 0x0000021FF6D094E0>, '__classcell__': <cell at 0x0000021FF6D1C400: empty>}
 #name对应类名，bases对应的时父类，attrs对应的是属性和方法
 
 # --->__new__() in MetaC~~~
 
-# cls=<class '__main__.C'>,name=C,bases=(),attrs={'__module__': '__main__', '__qualname__': 'C', 
-# '__new__': <function C.__new__ at 0x0000021FF6D09440>, '__init__': <function C.__init__ at 0x0000021FF6D094E0>, 
+# cls=<class '__main__.C'>,name=C,bases=(),attrs={'__module__': '__main__', '__qualname__': 'C',
+# '__new__': <function C.__new__ at 0x0000021FF6D09440>, '__init__': <function C.__init__ at 0x0000021FF6D094E0>,
 # '__classcell__': <cell at 0x0000021FF6D1C400: MetaC object at 0x0000021FF6C0E5C0>}
 # name对应类名，bases对应的时父类，attrs对应的是属性和方法
 
