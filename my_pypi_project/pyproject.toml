@@ -21,14 +21,14 @@ Homepage = "https://github.com/yourusername/your-project"
 Repository = "https://github.com/yourusername/your-project.git"
 Issues = "https://github.com/yourusername/your-project/issues"
 
-"""修改说明："""
-字段	你需要修改的内容
-name	换成你的项目名称（不能跟 PyPI 上已有的重名）
-version	换成你的版本号
-authors	换成你的名字和邮箱
-description	换成你的项目简短描述
-readme	如果文件名不是 README.md，改成你的实际文件名
-requires-python	换成你支持的 Python 最低版本
-classifiers	根据需要增删分类器
-dependencies	换成你的项目需要依赖的第三方库列表
-[project.urls]	换成你实际的仓库地址
+#    修改说明:
+# 字段	你需要修改的内容
+# name	换成你的项目名称（不能跟 PyPI 上已有的重名）
+# version	换成你的版本号
+# authors	换成你的名字和邮箱
+# description	换成你的项目简短描述
+# readme	如果文件名不是 README.md，改成你的实际文件名
+# requires-python	换成你支持的 Python 最低版本
+# classifiers	根据需要增删分类器
+# dependencies	换成你的项目需要依赖的第三方库列表
+# [project.urls]	换成你实际的仓库地址

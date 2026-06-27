@@ -5,23 +5,23 @@
 ' '正数前面加空格，负数前面加'-'号。
 """
 
-print('{:+}{:-}'.format(520, -250))  # ---->+520-250
-print('{:+}'.format(-500))  # ---->-500
+print("{:+}{:-}".format(520, -250))  # ---->+520-250
+print("{:+}".format(-500))  # ---->-500
 
 # 千分位的分隔符：1，使用逗号 ‘，’  2，使用下划线'_' .
-print('{:,}'.format(1000000))  # ---->1,000,000
-print('{:_}'.format(1000000))  # ---->1_000_000
+print("{:,}".format(1000000))  # ---->1,000,000
+print("{:_}".format(1000000))  # ---->1_000_000
 
 # 对于 type ,在f和format 格式化字符串中显示浮点数的精度：限定小数点后多少位。
-print('{:.3f}'.format(3.1415926535897932384626))  # ---->3.142
+print("{:.3f}".format(3.1415926535897932384626))  # ---->3.142
 
 # g对于 '{:.4g}'：  .4 表示保留 4 位有效数字（significant digits）
 # 从左边第一个非零数字开始计数，总共保留 4 位
-print('{:.4g}'.format(113.14159))  # 小数点前后一共4位。以小数点前的为主。
+print("{:.4g}".format(113.14159))  # 小数点前后一共4位。以小数点前的为主。
 # !!!千万别忘了，在2f,4g,前面一定要加上一个 "." ，这个. 就叫做 精度选项 。
 
 # 对于非数值的字符串是啥效果？
-print('{:.6}'.format('hello world'))  # ---->hello:截取前六位的字符
+print("{:.6}".format("hello world"))  # ---->hello:截取前六位的字符
 # print('{:.2}'.format(444))#精度选项不允许用于整数上。报错。
 
 """
@@ -39,22 +39,22 @@ tyPe的其他
 {:g}
 """
 
-print('{:b}'.format(100))  # ---->1100100  二进制
+print("{:b}".format(100))  # ---->1100100  二进制
 # print("{:d}".format(88.3))#---->十进制 不能用于字符串，只能用于数字而且是整数。integer类型。不能string/float类型。
-print('{:o}'.format(80))  # ---->120#八进制
-print('{:x}'.format(80))  # ---->50#十六进制
-print('{:c}'.format(80))  # ---->p 对应Unicode字符
-print('{:f}'.format(80))  # ---->80.000000#浮点数
-print('{:e}'.format(80))  # ---->8.000000e+01#科学计数法 小写e
-print('{:E}'.format(80))  # ---->8.000000E+01#科学计数法 大写E
-print('{:%}'.format(0.1))  # ---->10.000000% 百分比格式
+print("{:o}".format(80))  # ---->120#八进制
+print("{:x}".format(80))  # ---->50#十六进制
+print("{:c}".format(80))  # ---->p 对应Unicode字符
+print("{:f}".format(80))  # ---->80.000000#浮点数
+print("{:e}".format(80))  # ---->8.000000e+01#科学计数法 小写e
+print("{:E}".format(80))  # ---->8.000000E+01#科学计数法 大写E
+print("{:%}".format(0.1))  # ---->10.000000% 百分比格式
 
-print('{:#b}'.format(80))  # ---->0b1010000 二进制,#号会提示0b，是二进制格式。
+print("{:#b}".format(80))  # ---->0b1010000 二进制,#号会提示0b，是二进制格式。
 # 所以 #号只能用于 b、o、x、X 这四种进制格式！提示是什么进制。
 # b2, o8,  x16: b2,欧八，叉16.
 
 
-print('{:g}'.format(3.1415926535897932384626))
+print("{:g}".format(3.1415926535897932384626))
 """
 :g 的作用是：自动选择简洁的表示方式（科学计数法 或 定点表示法）。
 :g 的行为规则
@@ -64,19 +64,20 @@ g 会根据数字的大小，自动选择更简洁的格式：
 """
 
 # python 支持用关键字参数设置选项的值：
-print('{:.{precision}f}'.format(3.14159, precision=2))  # ---->3.14:传参：prec=2,精度取小数点2位。
-print('{:{align}{width}.{fii}{ty}}'.format(3.14159, align='<', width=5, fii=2, ty='f'))
-print('{:{align}{width}.{fii}{ty}}'.format(3.14159, align='<', width=5, fii=6, ty='f'))
+print("{:.{precision}f}".format(3.14159, precision=2))
+# ---->3.14:传参：prec=2,精度取小数点2位。
+print("{:{align}{width}.{fii}{ty}}".format(3.14159, align="<", width=5, fii=2, ty="f"))
+print("{:{align}{width}.{fii}{ty}}".format(3.14159, align="<", width=5, fii=6, ty="f"))
 # 输出：3.14 (左对齐，总宽度 5，保留 2 位小数,类型)#传入多个参数
 # 这是标准模式：对齐 宽度 精度 类型。不能搞错顺序。
-print('-' * 50)
+print("-" * 50)
 
 # f-string f字符串：
 year = 2008
-print(f'he is born in {year}')
+print(f"he is born in {year}")
 
-print(f'{3.14159:.2f}')  # f字符串：把数值放到：{}中，然后加上:.2f，表示保留2位小数。
-print(f'{-520:010}')  # ---->-000000520
+print(f"{3.14159:.2f}")  # f字符串：把数值放到：{}中，然后加上:.2f，表示保留2位小数。
+print(f"{-520:010}")  # ---->-000000520
 """
 :010 的含义
 格式：:[fill][align][width][type]
@@ -86,11 +87,11 @@ print(f'{-520:010}')  # ---->-000000520
 完整意思：将 -520 格式化为总宽度 10 个字符，不足的部分用 0 填充，右对齐。
 """
 
-align = '^'
+align = "^"
 width = 10
 precision = 6
-ty = 'g'
-print(f'{3.14159:{align}{width}.{precision}{ty}}')
+ty = "g"
+print(f"{3.14159:{align}{width}.{precision}{ty}}")
 # f-string的格式：[align][width].[fii][type]。  对齐 宽度 精度 类型
 # 此时的f-string不如format字符串简单了。
 
