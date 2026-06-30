@@ -35,7 +35,7 @@ print('I love china.')  # ---->single quotes单引号
 print("Today is good day.")  # ---->double quotes 双引号
 # print('Let's go') # 这种写法错误。
 print("Let's go!")  # 这样才对
-print('"life is short,you need python"')
+# print('"life is short,you need python"')#错误的引号方法
 print(('''What a beautifly cat!'''))
 
 # 转义符使用，引号前加上反斜杠\,把引号固定，只表示引号，没有其他语法含义。就不会再认为是引号的分隔作用了。

@@ -1,9 +1,6 @@
 #字符串的相关： 判断一个整数字是否回文数（正序和倒序读起来都一样的整数）
 s=(input('输入整数：'))
 
-
-
-#
 # if s==s[::-1]:
 #     print('是回文数')
 # else:
@@ -37,3 +34,5 @@ print(x.zfill(13))#当n小于原字符串时，直接显示原字符串
 
 w=str(-520)
 print(w.zfill(5))#整数不能用zfill()方法,所以先用str转化一下。
+print('hello world')
+print('hello')

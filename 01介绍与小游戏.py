@@ -1,21 +1,22 @@
 # 小甲鱼的课程开课，前面讲解了配置python,利用其IDLe交互式和编辑器式开始
 # 一个小游戏：
-temp = input('不妨猜一下小甲鱼现在心里想的是哪个数字：')
+temp = input("不妨猜一下小甲鱼现在心里想的是哪个数字：")
 guess = int(temp)
 
 if guess == 8:
-    print('猜猜对啦！')
-    print('但是没有奖励哦。')
+    print("猜猜对啦！")
+    print("但是没有奖励哦。")
 else:
-    print('没有蒙对哦。')
+    print("没有蒙对哦。")
 
-    print('结束啦，没啥意思。')  # 这一行的缩进在else下，猜错运行。
+    print("结束啦，没啥意思。")
+    # 这一行的缩进在else下，猜错运行。
 # print('结束啦，没啥意思。')#这一行的缩进在if下，猜对猜错都会运行。
-#
+
 # 不同的项目可以有不同的环境配置，太棒了。
 
 
-'''
+"""
 
 如何把新的project项目上传到github上：
 1:在本地新建一个项目project
@@ -28,4 +29,4 @@ else:
 8：git remote add origin git@github.com:仓库名/repo.git 添加远程仓库地址
 9：git push -u origin main  把本地文件推送到github 仓库中。需要同步master与main
 
-'''
+"""
