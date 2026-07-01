@@ -24,7 +24,7 @@ while times_input > 0:
         else:
             # guess > answer:#在else语句中，不要写条件了，因为else就是最后的情况：否则的意思。
             print(f"太大啦")
-            #f-str字符串没有起作用，因为字符串里面没有{变量}。效果等同于print('太大啦')
+            # f-str字符串没有起作用，因为字符串里面没有{变量}。效果等同于print('太大啦')
 
     times_input = times_input - 1
 else:
