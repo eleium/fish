@@ -30,3 +30,9 @@ else:
 9：git push -u origin main  把本地文件推送到github 仓库中。需要同步master与main
 
 """
+
+
+a = 10
+for i in range(a):
+    i = i + 1
+    print(i)
