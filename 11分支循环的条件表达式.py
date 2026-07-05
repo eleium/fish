@@ -1,6 +1,62 @@
 # 条件表达式：语句结构：
 #  条件成立时执行的语句 if condition else 条件不成立时执行的语句  condition:条件
-from selectors import SelectSelector
+age = 16
+if age < 18:
+    print("未满18岁禁止访问")
+else:
+    print("欢迎您来")
+
+# 如果将上面的代码换成 条件表达式，这样：
+
+print("未满18岁禁止访问") if age < 18 else print("欢迎您来")
+
+# 比较两个数的大小，并将小的赋值给small:
+
+a = 10
+b = 20
+if a < b:
+    small = a
+else:
+    small = b
+
+print(f"small={small}")
+
+# 条件表达式写法：
+print("small=a") if a < b else print("small=b")
+
+# 更简单的写法，变成了一个语句。
+small = a if a < b else b
+
+
+# 多else 的写法：
+score = 66
+level = (
+    "D"
+    if 0 <= score < 60
+    else "C"
+    if 60 <= score < 80
+    else "B"
+    if 80 <= score < 90
+    else "A"
+    if 90 <= score < 100
+    else "S"
+    if score == 100
+    else "请输入0~100之间的分值"
+)
+print(level)
+
+# 嵌套：
+age = 16
+isMale = True
+
+if age < 18:
+    print("滚出去，小孩")
+else:
+    if isMale:
+        print("来吧，喝一杯")
+    else:
+        print("女孩子不能喝酒")
+
 
 age = int(input("how old are you?"))
 if age <= 18:
@@ -55,7 +111,9 @@ print(
                 else (
                     "优秀"
                     if 90 < score < 100
-                    else "天才" if score == 100 else "别瞎几把填，写入1-100的分值"
+                    else "天才"
+                    if score == 100
+                    else "别瞎几把填，写入1-100的分值"
                 )
             )
         )
@@ -78,7 +136,9 @@ leval = (
                 else (
                     "优秀"
                     if 90 < score < 100
-                    else "天才" if score == 100 else "别瞎几把填，写入1-100的分值"
+                    else "天才"
+                    if score == 100
+                    else "别瞎几把填，写入1-100的分值"
                 )
             )
         )

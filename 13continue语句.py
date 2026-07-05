@@ -22,6 +22,8 @@ print(
 代入公式:1 = 2*0 + 余数 -> 余数 = 1 - 0 = 1.
 """
 
+
+
 # else语句:当条件不为真的时候，就会执行else语句
 
 i = 1
@@ -30,16 +32,17 @@ while i < 10:  # 循环9次，第10次等于10了，不符合条件了，就执�
     i = i + 1
 else:
     print(f"循环外值是{i}")
-    print("循环外的值是", i)  # 这个语法与(f'循环外的值是{I})一样.
+    print("循环外的值是", i)  
+    # 这个语法与(f'循环外的值是{I})一样.
 
-day = 0
+
+#每天坚持打卡的小程序
+day = 1
 while day <= 7:
     answer = input("今天好好学习了吗？")
-    day = day + 1
     if answer != "有":
-        print("今天好好学习了.")  # 如果输入的不是 “有”就打印这句“今天好好学习了”.
         break
-
+    day = day + 1
 else:
     print("连续7天好好学习了")
 
@@ -51,16 +54,31 @@ if 分支的代码块(包含 print 和 break)不会执行.连break都不执行�
 执行 if 分支的代码块:打印“今天好好学习了.”并 break 跳出循环.
 """
 
+
+
 # 循环的嵌套
 
 i = 1
 while i <= 9:
+    #横行
     j = 1
     while j <= i:
+        #竖列
         print(j, "*", i, "=", j * i, end=" ")
         j = j + 1
     print()
     i = i + 1
 
-day = 1
-hour = 1
+#无论是break语句，还是continue语句，都只能作用于一层循环体。
+
+day=1
+hour=1
+
+while day<7:
+    while hour<8:
+        print('我要学习8小时')
+        hour+=1
+        if hour>1:
+            break
+
+day+=1

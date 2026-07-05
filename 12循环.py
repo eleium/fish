@@ -8,11 +8,12 @@ Python 有两种循环语句： while and for.
 #     statement(s)
 #
 
-love = "yes"  # 给变量love赋值为字符串：yes
-while love == "yes":  # 如果变量的值是，等于yes,就执行循环
-    love = input(
-        "今天你还爱我吗？"
-    )  # 变量love被赋值为：今天你还爱我吗？的输入：如果与yes相对就循环。
+love = "yes"
+# 给变量love赋值为字符串：yes
+while love == "yes":
+    # 如果变量的值是，等于yes,就执行循环
+    love = input("今天你还爱我吗？")
+    # 变量love被赋值为：今天你还爱我吗？的输入：如果与yes相对就循环。
     # 如果不是，与yes不相等,那么循环就结束。
 
 """
@@ -55,19 +56,28 @@ love 变为新值（如 'no'）→ 条件 love == 'yes' 为 False，退出循环
 i = 1
 sum = 0
 while i <= 100:
-    sum = sum + i  # sum += I
-    i = i + 1  # I += 1
+    sum = sum + i  
+    # sum += I
+    i = i + 1  
+    # I += 1
 print(sum)
 
+
+
+
 # 死循环
-while (
-    True
-):  # 因为True 永远是真，不会为False，所以会一直循环，死循环。死循环也有很大的作用。
+
+while True:
+    # 因为True 永远是真，不会为False，所以会一直循环，死循环。死循环也有很大的作用。
     print("世界真美好")
-    break  # 用break来结束循环。
+    break
+# 用break来结束循环。
 
 while True:
     answer = input("可以退出吗？")
     if answer == ("可以"):
         break
-    print("还没好？")  # 如果输入了'可以',程序就不执行这一个体内的代码，直接break了。
+    print("还没好？")
+    # 如果输入了'可以',程序就不执行这一个体内的代码，直接break了。
+
+
