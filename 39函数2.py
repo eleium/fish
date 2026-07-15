@@ -1,10 +1,13 @@
 # 函数的参数：
 # 1：位置参数，一般情况下，实参是按照形参的顺序来匹配的
 def myfunc(s, vt, o):
-    return "".join((o, vt, s))  # 把三个参数颠倒顺序后拼成字符串。
+    return "".join((o, vt, s))
 
 
-result = myfunc('hello', 'world', 'python')
+# 把三个参数颠倒顺序后拼成字符串。
+
+
+result = myfunc("hello", "world", "python")
 print(result)
 # --->pythonworldhello
 
@@ -25,27 +28,31 @@ def myfunc(s, vt, o):
     return "".join((o, vt, s))
 
 
-result = myfunc(s='python', vt='打了', o='我')
+result = myfunc(s="python", vt="打了", o="我")
 print(result)
 # --->我打了python
 
 # 如果混用位置参数和关键字参数，那么位置参数必须要在关键字参数的前面：
 # result = myfunc(o='python', '爱', '我')#--->SyntaxError: positional argument follows keyword argument
-result = myfunc('我', vt='爱', o='python')
-result2 = myfunc('我', o='python', vt='爱')
+result = myfunc("我", vt="爱", o="python")
+result2 = myfunc("我", o="python", vt="爱")
 print(result, result2)
 
 
 # 默认先传入的参数是位置参数，并与形参匹配。
 
+
 # python 有默认参数。如果调用参数的时候没有传入实参，就用默认参数
-def myfunc(s, vt, o='python'):  # 给参数o指定了一个默认值：'python'
+def myfunc(s, vt, o="python"):
+    # 给参数o指定了一个默认值：'python'
     return "".join((o, vt, s))
 
 
-print(myfunc('我', vt='爱'))  # 既然创建参数的时候就指定了默认参数o='python',那么在调用参数的时候就不要再传入参数o了。
+print(myfunc("我", vt="爱"))
+# 既然创建参数的时候就指定了默认参数o='python',那么在调用参数的时候就不要再传入参数o了。
 # 如果非要传入第三个参数，那么就会覆盖默认参数。
-print(myfunc('我', vt='学习', o='java'))  # --->java学习我
+print(myfunc("我", vt="学习", o="java"))
+# --->java学习我
 
 # 小知识：在用help()函数的时候，比如：
 help(abs)
@@ -75,6 +82,7 @@ start 是 sum() 函数的关键字参数，表示起始值。
 
 
 # 斜杠/的作用也可以用在自己定义的函数里：注意，斜杠要加逗号。
+# ✅ 斜杠 / 表示它前面的参数只能用位置参数传递，不能用关键字参数。
 def abc(a, /, b, c):
     print(a, b, c)
 
@@ -89,10 +97,12 @@ def abc(a, /, b, c):
 
 
 result = abc(2, b=3, c=4)
-print(result)  # --->(2,3,4)且斜杠前面是位置参数，斜杠后面是关键字参数。
+print(result)
+# --->(2,3,4)且斜杠前面是位置参数，斜杠后面是关键字参数。
 
 
 # 用*号可以指定右侧只能是关键字参数，但是左侧可以是位置参数，也可以是关键字参数。
+
 
 def myfunc(a, *, b, c):
     return a, b, c

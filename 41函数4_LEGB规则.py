@@ -1,4 +1,6 @@
 """
+
+
 LEGB 变量作用域规则定义：
 Python 变量作用域查找顺序，按优先级从高到低：
 L - Local（局部作用域）
@@ -10,6 +12,7 @@ G - Global（全局作用域）
 B - Built-in（内置作用域）
 Python 内置的函数和异常（如 print、len、Exception）
 查找机制： Python 按 L → E → G → B 顺序查找变量，找到即停止，找不到则报 NameError。
+
 """
 
 # 全局作用域 G
@@ -22,12 +25,14 @@ def outer():
 
     def inner():
         # 局部作用域 L
-        print(x)  # 会先找 L，再找 E，再找 G，最后找 B
+        print(x)
+        # 会先找 L，再找 E，再找 G，最后找 B
 
     inner()
 
 
-outer()  # --->外层变量
+outer()
+# --->外层变量
 # 解释：inner() 里没有定义 x，所以它会去外层的 outer() 里找，找到就停止，不会再去全局找。
 
 

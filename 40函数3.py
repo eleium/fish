@@ -1,7 +1,8 @@
 # 收集参数：用*号加在args前面，表示可以一个或者多个参数：
 def print_args(*args):
-    print('有{}个参数'.format(len(args)))  # --->(1,2,3)传入的参数数量随意。
-    print(f'第{2}个参数是{args[1]}')
+    print("有{}个参数".format(len(args)))
+    # --->(1,2,3)传入的参数数量随意。
+    print(f"第{2}个参数是{args[1]}")
     return args
 
 
@@ -29,7 +30,7 @@ print(f'有{len(args)}个参数')
     (1,2,3,4)
 python 函数return的是一个元组。"""
 
-print('-' * 88)
+print("-" * 88)
 
 
 # 拿到一个解包的元组：
@@ -49,7 +50,7 @@ def myfunc(*args):
     # return args
 
 
-print(myfunc(1, 2, 3, 'hello'))
+print(myfunc(1, 2, 3, "hello"))
 
 
 # <class 'tuple'>
@@ -59,7 +60,11 @@ print(myfunc(1, 2, 3, 'hello'))
 # 函数的搜集参数（*args)是一个元组，里面的元素是函数的参数。还可以有另外的参数，但是必须是关键字参数：
 def myfunc(*args, a, b):
     print(args, a, b)
-    return args, a, b  # --->((1,2,3),22,33)返回的参数组成一个元组。可以return args,也可以return args,a,b
+    return (
+        args,
+        a,
+        b,
+    )  # --->((1,2,3),22,33)返回的参数组成一个元组。可以return args,也可以return args,a,b
 
 
 result = myfunc(1, 2, 3, a=22, b=33)
@@ -68,10 +73,16 @@ print(result)  # --->(1,2,3,) 4 5
 
 # 用*星号限制*号后面的必须使用关键字参数。*星号本身是语法分隔符，类似/的作用，/前面的必须是位置参数，
 def myfunc(a, *, b, c):  # 其中的*是个语法分隔符。
-    print(a, b, c, )
+    print(
+        a,
+        b,
+        c,
+    )
 
 
-result = myfunc(a=5, b=77, c=88)  # 也可以写： result=myfunc(5,b=77,c=88),因为a是位置参数。
+result = myfunc(
+    a=5, b=77, c=88
+)  # 也可以写： result=myfunc(5,b=77,c=88),因为a是位置参数。
 print(result)
 
 
@@ -86,6 +97,7 @@ print(result)
 
 
 # --->{'a':2,'b':5,'c':8}
+
 
 def myfunc(a, *args, **kwargs):
     print(a, args, kwargs)
@@ -131,12 +143,14 @@ def myfunc(a, b, c):
     return a, b, c
 
 
-result = myfunc(*args)  # 实际参数传入带*号的元组，结果解包参数。前提是先有一个变量args,是一个元组
+result = myfunc(
+    *args
+)  # 实际参数传入带*号的元组，结果解包参数。前提是先有一个变量args,是一个元组
 print(result)  # --->(1,2,3)
 
 # 两个**对应的时关键字参数，也就是键值对，即字典：
 
-kwargs = {'a': 1, 'b': 2, 'c': 3}
+kwargs = {"a": 1, "b": 2, "c": 3}
 
 
 # 字典键是字符串时必须加引号，否则Python会把它当变量。
