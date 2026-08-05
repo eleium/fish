@@ -8,7 +8,8 @@ myfunc()
 # --->520
 
 
-# print(x)  # 报错：NameError: name 'x' is not defined
+# print(x) 
+# 报错：NameError: name 'x' is not defined
 # 内部变量x是局部变量，在函数内部定义，在函数外部无法访问。
 
 
